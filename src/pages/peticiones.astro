@@ -9,19 +9,22 @@ import TitlePage from "../components/TitlePage.astro";
     <div class="container">
       <section class="contacto">
         <Header />
-     
-         <TitlePage titular="Contáctenos" subtitular="¿Tienes alguna pregunta? ¿Necesitas ayuda? No lo dudes, escríbanos."/>
+
+        <TitlePage
+          titular="Formulario de entradas personalizadas"
+          subtitular="Solicita tu entrada conmemorativa personalizada cubriendo este formulario."
+        />
 
         <form
-          class="contacto__form"
-          name="contacto"
+          class="order__form"
+          name="encargo-entrada"
           method="POST"
           netlify
           netlify-honeypot="bot-field"
           action="/gracias"
         >
           <!-- Campo honeypot para spam -->
-          <input type="hidden" name="form-name" value="contacto" />
+          <input type="hidden" name="form-name" value="encargo-entrada" />
           <p class="hidden">
             <label class="contacto__label">
               <span>Non encher:</span>
@@ -52,12 +55,36 @@ import TitlePage from "../components/TitlePage.astro";
               />
             </label>
           </div>
-          
+          <div class="contacto__fila-doble">
+            <label class="contacto__label">
+              <span>Tipo de evento</span>
+              <select class="contacto__input" name="tipo-evento" required>
+                <option value="concierto">Concierto</option>
+                <option value="festival">Festival</option>
+                <option value="teatro">Teatro</option>
+                <option value="otro">Otro</option>
+              </select>
+            </label>
+
+            <label class="contacto__label">
+              <span>Fecha del evento</span>
+              <input class="contacto__input" type="date" name="fecha-evento" />
+            </label>
+          </div>
+          <label class="contacto__label">
+            <span>Nombre del artista / evento</span>
+            <input
+              class="contacto__input"
+              type="text"
+              name="artista-evento"
+              required
+              placeholder="Escribe el nombre del artista / evento"
+            />
+          </label>
 
           <label class="contacto__label">
-            <span>Mensaje</span>
+            <span>Estilo deseado (referencias, mood...)</span>
             <textarea
-                required
               class="contacto__input contacto__textarea"
               name="estilo"
               rows="4"
@@ -110,8 +137,6 @@ import TitlePage from "../components/TitlePage.astro";
     background-size: cover;
   }
 
-
-
   /* FORM */
 
   .contacto__form {
@@ -127,6 +152,7 @@ import TitlePage from "../components/TitlePage.astro";
     gap: 0.55rem;
     font-size: 0.9rem;
     color: var(--light);
+    margin-bottom: 20px;
   }
 
   .contacto__label span {
@@ -230,7 +256,7 @@ import TitlePage from "../components/TitlePage.astro";
     margin-top: 1.2rem;
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    
   }
 
   .contacto__submit {

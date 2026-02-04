@@ -8,9 +8,11 @@ import vintedIcon from "../assets/socials/vinted_icon.svg";
   <div class="container">
     <div class="footer__top">
       <!-- Logo -->
+       <a href="/" class="footer__a--logo">
       <div class="footer__column footer__brand">
         <img class="footer__logo" src={logo.src} alt="Entradas Vivas" />
       </div>
+      </a>
       <!-- Mapa del sitio -->
       <nav class="footer__column">
         <h3 class="footer__heading">Mapa del sitio</h3>
@@ -18,8 +20,8 @@ import vintedIcon from "../assets/socials/vinted_icon.svg";
           <li><a href="/">Inicio</a></li>
           <li><a href="/catalogo">Catálogo</a></li>
           <li><a href="/experiencia">Experiencia</a></li>
+          <li><a href="/peticiones">Peticiones</a></li>
           <li><a href="/contacto">Contacto</a></li>
-          <li><a href="/aviso-legal">Aviso legal</a></li>
         </ul>
       </nav>
 
@@ -126,6 +128,10 @@ import vintedIcon from "../assets/socials/vinted_icon.svg";
 
   .footer__list a:hover {
     color: var(--main-color);
+  }
+
+  .footer__a--logo{
+    text-decoration: none;
   }
 
   .footer__a{

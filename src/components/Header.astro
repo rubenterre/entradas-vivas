@@ -8,9 +8,11 @@ const pathname = new URL(Astro.request.url).pathname;
 
 <header class="header hide-on-med-and-down">
   <div class="header__container">
-    <div class="header__logo">
-      <img class="header__img" src={logo.src} alt="Logo de Entradas Vivas" />
-    </div>
+    <a href="/" class="header__a">
+      <div class="header__logo">
+        <img class="header__img" src={logo.src} alt="Logo de Entradas Vivas" />
+      </div>
+    </a>
     <nav class="header__nav">
       <a class={`header__a ${pathname === "/" ? "active" : ""}`} href="/"
         >Inicio</a
@@ -27,10 +29,14 @@ const pathname = new URL(Astro.request.url).pathname;
       >
 
       <a
+        class={`header__a ${pathname === "/peticiones" ? "active" : ""}`}
+        href="/peticiones">Peticiones</a
+      >
+
+      <a
         class={`header__a ${pathname === "/contacto" ? "active" : ""}`}
         href="/contacto">Contacto</a
       >
-
     </nav>
     <div class="header__buttons">
       <a href="/contacto" class="header__button--form">
@@ -154,41 +160,35 @@ const pathname = new URL(Astro.request.url).pathname;
     border: none;
   }
 
-
-.header__button--form {
-      display: inline-flex;
+  .header__button--form {
+    display: inline-flex;
     align-items: center;
     gap: 0.8rem;
-  background: var(--blue);
-  color: var(--white);
-  height: 44px;
-      font-family: var(--font-secondary);
+    background: var(--blue);
+    color: var(--white);
+    height: 44px;
+    font-family: var(--font-secondary);
     font-size: 1rem;
     padding: 5px 1rem;
     border-radius: 12px;
     border: none;
     height: 44px;
     text-decoration: none;
-}
+  }
 
-/* icono claro sobre fondo oscuro */
-.header__button--form .btn__icon {
-  filter: brightness(0) invert(1);
-}
+  /* icono claro sobre fondo oscuro */
+  .header__button--form .btn__icon {
+    filter: brightness(0) invert(1);
+  }
 
-/* hover: mezcla azul + coral para darle carácter de CTA */
+  /* hover: mezcla azul + coral para darle carácter de CTA */
 
-.header__button--form:hover {
-  background: linear-gradient(
-    90deg,
-    var(--blue),
-    var(--main-color)
-  );
-  background-size: 180% 100%;
-  background-position: 0% 50%;
- transform: translateY(-1px);
-}
-
+  .header__button--form:hover {
+    background: linear-gradient(90deg, var(--blue), var(--main-color));
+    background-size: 180% 100%;
+    background-position: 0% 50%;
+    transform: translateY(-1px);
+  }
 
   /* Header mobile */
 
