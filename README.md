@@ -1,0 +1,2 @@
+# entradas-vivas
+Plataforma web para explorar un catálogo de entradas conmemorativas de conciertos y festivales. Las entradas no son tickets reales, sino diseños personalizados para recordar experiencias en eventos pasados. El proyecto incluye frontend con Astro, integración con Storyblok como CMS y un sistema básico de filtros para navegar por productos, además de un flujo de solicitud para encargar diseños a medida.

@@ -1,0 +1,229 @@
+---
+import { Swiper, SwiperWrapper, SwiperSlide } from "astro-swiper";
+import { Image } from "astro:assets";
+import prev from "../assets/icons/prev_icon.svg"
+import next from "../assets/icons/next_icon.svg"
+
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+
+---
+
+<section class="tickets-slider">
+  <Swiper
+    class="my-coverflow slider-3d"
+    options={{
+      loop: true,
+      spaceBetween: 0,
+      slidesPerView: "auto",
+      centeredSlides: true,
+      freeMode: true,
+      watchSlidesProgress: true,
+      effect: "coverflow",
+      grabCursor: true,
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 75,
+        depth: 0,
+        modifier: 1,
+        scale: 0.9,
+        slideShadows: false,
+      },
+      navigation: {
+        nextEl: ".next-3d",
+        prevEl: ".prev-3d",
+      },
+     pagination: {
+      el: ".slider-3d .swiper-pagination",
+      clickable: true,
+      renderBullet: (index, className) =>
+        `<span class="${className}">${index + 1}</span>`,
+    },
+      breakpoints: {
+        500: { slidesPerView: 2 },
+        991: { slidesPerView: 3 },
+        1024: { slidesPerView: 3 },
+        1200: { slidesPerView: 4 },
+        1400: { slidesPerView: 4 },
+      },
+    }}
+  >
+    <SwiperWrapper>
+      <SwiperSlide>
+        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
+
+        <div class="card__box">
+          <p class="card__p">Emilia Mernes</p>
+          <p class="card__price">€ <span>4,34</span></p>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
+ 
+        <div class="card__box">
+          <p class="card__p">Emilia Mernes</p>
+          <p class="card__price">€ <span>4,34</span></p>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
+ 
+        <div class="card__box">
+          <p class="card__p">Emilia Mernes</p>
+          <p class="card__price">€ <span>4,34</span></p>
+        </div>
+      </SwiperSlide>
+            <SwiperSlide>
+        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
+ 
+        <div class="card__box">
+          <p class="card__p">Emilia Mernes</p>
+          <p class="card__price">€ <span>4,34</span></p>
+        </div>
+      </SwiperSlide>
+            <SwiperSlide>
+        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
+  
+        <div class="card__box">
+          <p class="card__p">Emilia Mernes</p>
+          <p class="card__price">€ <span>4,34</span></p>
+        </div>
+      </SwiperSlide>
+            <SwiperSlide>
+        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
+  
+        <div class="card__box">
+          <p class="card__p">Emilia Mernes</p>
+          <p class="card__price">€ <span>4,34</span></p>
+        </div>
+      </SwiperSlide>
+            <SwiperSlide>
+        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
+   
+        <div class="card__box">
+          <p class="card__p">Emilia Mernes</p>
+          <p class="card__price">€ <span>4,34</span></p>
+        </div>
+      </SwiperSlide>
+            <SwiperSlide>
+        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
+
+        <div class="card__box">
+          <p class="card__p">Emilia Mernes</p>
+          <p class="card__price">€ <span>4,34</span></p>
+        </div>
+      </SwiperSlide>
+    </SwiperWrapper>
+
+    <div class="controls-3d">
+      <button class="prev-3d">
+        <Image class="icon-control" src={prev} alt="Icono de selecciona imagen previa"/>
+      </button>
+        <div class="swiper-pagination"></div>
+      <button class="next-3d">
+         <Image class="icon-control" src={next} alt="Icono de selecciona imagen previa"/>
+      </button>
+    </div>
+  </Swiper>
+</section>
+
+<style>
+  .tickets-slider {
+    padding: 3rem 0;
+  }
+
+  .my-coverflow {
+    width: 100%;
+    padding: 40px 0;
+  }
+
+  .my-coverflow :global(.swiper-slide) {
+    width: 260px;
+    max-height: 485px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: #1e1e1e;
+    padding: 12px 12px 17px 12px;
+    margin-bottom: 40px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+  }
+
+  .my-coverflow :global(.swiper-slide img) {
+    width: 100%;
+    max-height: 338px!important;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .card__box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem 0px;
+  }
+
+  .card__p{
+    font-family: var(--font-secondary);
+    color: var(--light);
+    font-size: 1rem;
+  }
+
+  .card__price{
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    color: var(--text-secondary);
+  }
+
+ .controls-3d{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+ }
+
+.prev-3d{
+    width: 67px;
+    height: 67px;
+    border: none;
+    background: transparent;
+}
+
+.icon-control{
+    width: 90%;
+    height: 90%;
+}
+
+.next-3d{
+    width: 67px;
+    height: 67px;
+    border: none;
+    background: transparent;
+}
+
+.my-coverflow :global(.swiper-pagination-bullet) {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--text-secondary);
+  opacity: 0.4;
+  margin: 0 4px;
+}
+
+.my-coverflow :global(.swiper-pagination-bullet-active) {
+  background: var(--light);
+  opacity: 1;
+}
+
+</style>

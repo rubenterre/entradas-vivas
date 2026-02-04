@@ -1,0 +1,221 @@
+---
+import { Image } from "astro:assets";
+import arrow from "../assets/icons/arrow_icon.svg";
+import banner from "../assets/images/banner_1.webp";
+
+const particlesOptions = {
+  background: { color: "transparent" },
+  fullScreen: { enable: false, zIndex: 0 },
+  particles: {
+    number: { value: 80, density: { enable: true, area: 800 } },
+    color: { value: "#111111" },
+    links: {
+      enable: true,
+      color: "#111111",
+      distance: 200,
+      opacity: 0.35,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 1.2,
+      direction: "none",
+      outModes: { default: "out" }
+    },
+    opacity: { value: 0.45 },
+    size: { value: 2, random: true }
+  },
+  interactivity: {
+    events: {
+      onHover: { enable: true, mode: "repulse" },
+      onClick: { enable: false },
+      resize: true
+    },
+    modes: { repulse: { distance: 120 } }
+  },
+  detectRetina: true
+};
+---
+
+<section class="banner-wrapper">
+  <div class="banner">
+    <!-- contenedor del canvas -->
+    <div id="bannerParticles" class="banner-particles"></div>
+
+    <div class="banner-left">
+      <h1 class="banner__h1">Crea tu propia entrada personalizada</h1>
+      <div class="banner-buttons">
+        <a href="/catalogo" class="btn btn-secondary">
+          Catálogo
+          <Image class="btn__icon" src={arrow} alt="Icono de flecha" />
+        </a>
+        <a href="/crear-entrada" class="btn btn-primary">
+          Crea tu entrada
+          <Image src={arrow} alt="Icono de flecha" />
+        </a>
+      </div>
+    </div>
+
+    <div class="banner-right">
+      <Image class="banner__img" src={banner} alt="Imágenes de entradas de concierto" />
+    </div>
+  </div>
+</section>
+
+<!-- <script define:vars={{ particlesOptions }}>
+  import { tsParticles } from "tsparticles-engine";
+  import { loadFull } from "tsparticles";
+
+  // se ejecuta solo en el cliente
+  (async () => {
+    await loadFull(tsParticles);
+
+    const container = document.getElementById("bannerParticles");
+    if (container) {
+      tsParticles.load({
+        id: "bannerParticles",
+        element: container,
+        options: particlesOptions,
+      });
+    }
+  })();
+</script>
+ -->
+<script define:vars={{ particlesOptions }}>
+  // Carga tsParticles desde CDN como script UMD
+  const script = document.createElement("script");
+  script.src = "https://cdn.jsdelivr.net/npm/tsparticles-engine@2.12.0/tsparticles.engine.min.js";
+  script.onload = async () => {
+    const mainScript = document.createElement("script");
+    mainScript.src = "https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js";
+    mainScript.onload = () => {
+      const container = document.getElementById("bannerParticles");
+      if (container && window.tsParticles) {
+        window.tsParticles.load({
+          id: "bannerParticles",
+          element: container,
+          options: particlesOptions,
+        });
+      }
+    };
+    document.body.appendChild(mainScript);
+  };
+  document.body.appendChild(script);
+</script>
+
+<style>
+.banner-wrapper {
+  background: var(--color-dark-bg);
+  padding: 3rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background: var(--white);
+
+}
+
+.banner__h1{
+  font-family: var(--font-secondary);
+  color: var(--color-dark-bg);
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  line-height: 3rem;
+}
+
+.banner-buttons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn{
+  display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+padding: 10px;
+height: 50px;
+border-radius: 14px;
+text-decoration: none;
+font-family: var(--font-secondary);
+}
+
+.btn-secondary{
+  background: var(--color-dark-bg);
+  color: var(--light);
+  font-size: 1rem;
+  width: 190px;
+  border: 2px solid transparent;
+}
+
+.btn-primary{
+  background: var(--blue);
+  color: var(--light);
+  font-size: 1rem;
+  width: 230px;
+  border: 2px solid transparent;
+}
+
+.btn-secondary:hover{
+  background: var(--light);
+  color: var(--bg-elevated);
+  font-size: 1rem;
+  width: 190px;
+  border: 2px solid var(--bg-elevated);
+
+  & .btn__icon {
+  filter: invert(1);
+  transition: filter 0.2s ease;
+}
+}
+
+
+
+.btn-primary:hover{
+  background: var(--bg-elevated);
+  color: var(--light);
+  font-size: 1rem;
+  width: 230px;
+  border: 2px solid var(--bg-elevated);
+
+}
+
+
+/* El canvas de partículas se limita al rectángulo del banner */
+.banner-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.banner-left{
+  padding-left: 2rem;
+}
+
+/* contenido por encima del canvas */
+.banner-left,
+.banner-right {
+  position: relative;
+  z-index: 1;
+}
+
+.banner-right{
+  height: 100%;
+}
+
+.banner__img{
+  height: 100%;
+}
+</style>

@@ -1,0 +1,142 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import TicketSlider from "../components/TicketSlider.astro";
+import { Image } from "astro:assets";
+import arrow from "../assets/icons/arrow_icon.svg";
+import arrowBlack from "../assets/icons/arrow_icon-black.svg";
+import Recommended from "../components/Recommended.astro";
+import Steps from "../components/Steps.astro";
+import Banner from "../components/Banner.astro";
+import Catalog from "../components/Catalog.astro";
+---
+
+<Layout>
+  <section class="hero">
+    <div class="container">
+      <Header />
+      <div class="hero__content">
+        <h1 class="hero__h1">Revive la magia de tus conciertos favoritos</h1>
+        <p class="hero__p">
+          Entradas diseñadas para recordar cómo sonaba, con quién fuiste y lo
+          que sentiste.
+        </p>
+        <div class="hero__buttons">
+          <a href="#" class="hero__button-descubre"
+            >Descubre más
+            <Image src={arrowBlack} alt="Icono de flecha" />
+          </a>
+          <a href="#" class="hero__button-form"
+            >Crea tu propia entrada
+            <Image src={arrow} alt="Icono de flecha" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <TicketSlider />
+
+  </section>
+
+  <div class="container">
+    <Recommended />
+    <Steps/>
+    <Banner />
+    <Catalog/>
+  </div>
+</Layout>
+
+<style>
+  .hero {
+    background:
+      linear-gradient(
+        180deg,
+        rgb(22 22 22 / 97%) 0%,
+        rgb(22 22 22 / 76%) 40%,
+        rgba(22, 22, 22, 0) 89%,
+        rgba(22, 22, 22, 1) 100%
+      ),
+      url(../assets/aplausos_fondo_hero.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .hero__content {
+    max-width: 628px;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  .hero__h1 {
+    font-family: var(--font-primary);
+    color: var(--light);
+    font-weight: 400;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .hero__p {
+    font-family: var(--font-secondary);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    line-height: 22px;
+    margin-top: 2rem;
+  }
+
+  .hero__buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .hero__button-descubre {
+    font-family: var(--font-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    width: 190px;
+    height: 50px;
+    border-radius: 14px;
+    background-color: var(--light);
+    text-decoration: none;
+    color: var(--color-dark-bg);
+  }
+
+  .hero__button-form {
+    font-family: var(--font-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    width: 332px;
+    height: 50px;
+    border-radius: 14px;
+    background-color: var(--blue);
+    text-decoration: none;
+    color: var(--light);
+  }
+
+  @media (max-width: 550px) {
+    .hero__buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero__button-descubre {
+      width: 100%;
+    }
+
+    .hero__button-form {
+      width: 100%;
+    }
+  }
+</style>

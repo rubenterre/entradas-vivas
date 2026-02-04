@@ -1,0 +1,141 @@
+---
+import { Swiper, SwiperWrapper, SwiperSlide } from "astro-swiper";
+import { Image } from "astro:assets";
+import arrowBg from "../assets/icons/arrow_icon_bg.svg";
+import arrowPrev from "../assets/icons/arrow-slider-prev_icon.svg";
+import arrowNext from "../assets/icons/arrow-slider-next_icon.svg";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import Card from "./Card.astro";
+import Title from "./Title.astro";
+---
+
+<section class="featured pt-10">
+  <Title title="Lo que más recuerda la gente" url="/"/>
+
+  <Swiper
+    class="featured-carousel"
+    options={{
+      direction: "horizontal",
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: ".featured-pagination",
+        clickable: true,
+        renderBullet: (index, className) =>
+          `<span class="${className}">+</span>`,
+      },
+      navigation: {
+        nextEl: ".featured-next",
+        prevEl: ".featured-prev",
+      },
+      breakpoints: {
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      },
+    }}
+  >
+    <SwiperWrapper>
+      <SwiperSlide>
+        <Card />
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <Card />
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <Card />
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <Card />
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <Card />
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <Card />
+      </SwiperSlide>
+    </SwiperWrapper>
+
+    <div class="featured-controls">
+      <div class="featured-controls__container">
+        <button class="featured__arrow featured-prev">
+          <Image src={arrowPrev} alt="Icono de flecha izquierda" />
+        </button>
+        <div class="featured-pagination"></div>
+        <button class="featured__arrow featured-next">
+          <Image src={arrowNext} alt="Icono de flecha derecha" />
+        </button>
+      </div>
+    </div>
+  </Swiper>
+</section>
+
+<style>
+  
+  .featured-carousel :global(.swiper-slide) {
+    background: var(--card-bg);
+    border-radius: 32px;
+    padding: 20px 20px 24px;
+    color: var(--light);
+    max-width: 360px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .featured-controls {
+    margin-top: 2rem;
+  }
+
+  .featured-controls__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+    gap: 1rem;
+  }
+
+  .featured-pagination {
+    flex: 1;
+    max-width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .featured-carousel :global(.swiper-pagination-bullet) {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: transparent;
+    color: var(--light);
+    font-size: 1.5rem;
+    line-height: 1;
+    margin: 0 0.3rem;
+  }
+
+  .featured-carousel :global(.swiper-pagination-bullet::before) {
+    content: "+";
+  }
+
+  .featured-carousel :global(.swiper-pagination-bullet-active) {
+    font-weight: 600;
+    color: var(--accent-warm);
+  }
+
+  .featured__arrow {
+    background: transparent;
+    border: none;
+    flex-shrink: 0;
+  }
+</style>

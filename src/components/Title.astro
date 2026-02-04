@@ -1,0 +1,46 @@
+---
+import ArrowBg from "../assets/icons/arrow_icon_bg.svg";
+const { title, url } = Astro.props;
+---
+
+  <div class="title">
+    <h1 class="title__h1">{title}</h1>
+    <a href={url} class="title__a">
+      Descubre más
+      <ArrowBg alt="Icono de flecha" />
+    </a>
+  </div>
+
+
+<style>
+    .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 0px;
+  }
+
+  .title__h1 {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--light);
+  }
+
+  .title__a {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: var(--light);
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    text-decoration: none;
+  }
+
+  .title__a:hover{
+    color: var(--main-color);
+  }
+</style>

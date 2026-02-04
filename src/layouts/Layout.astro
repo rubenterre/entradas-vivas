@@ -1,0 +1,165 @@
+---
+import "../styles/global.scss";
+
+import Footer from "../components/Footer.astro";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Entradas Vivas - Entradas conmemorativas de eventos</title>
+  </head>
+  <body>
+    <slot />
+
+    <Footer/>
+
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+  }
+
+  @font-face {
+    font-family: MontserratAlternates-Regular;
+    src: url(/fonts/MontserratAlternates-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: MontserratAlternates-Bold;
+    src: url(/fonts/MontserratAlternates-Bold.ttf);
+  }
+
+  @font-face {
+    font-family: AzeretMono;
+    src: url(/fonts/AzeretMono-VariableFont_wght.ttf);
+  }
+
+/*   :root {
+    --accent-warm: #ff6f61;
+    --bg-elevated: #181b1f;
+    --blue: #0a35e2;
+    --card-bg: #171717;
+    --color-dark-bg: #111111;
+    --light: #dee8e8;
+    --main-color: #84c72a;
+    --text-in-bg: #161616;
+    --text-secondary: #b5b5b5;
+    --white: #f2f2f2;
+    --font-primary: MontserratAlternates-Regular;
+    --font-secondary: AzeretMono;
+    --font-bold: MontserratAlternates-Bold;
+  } */
+
+:root {
+  /* Colores base del sistema */
+  --main-color:    #ff3040; /* rojo/coral principal: CTAs, énfasis */
+  --accent-warm:   #ff7b6a; /* acento cálido más suave: hovers, badges */
+  --blue:          #7b32ff; /* violeta/neón del logo para detalles puntuales */
+
+  /* Fondos oscuros */
+  --color-dark-bg: #100c26; /* fondo general (casi morado muy oscuro) */
+  --bg-elevated:   #1b142f; /* secciones elevadas / layout principal */
+  --card-bg:       #22163b; /* tarjetas de entradas, bloques de contenido */
+
+  /* Neutros claros y texto */
+  --white:         #f7f5ff; /* blanco roto para textos y fondos puntuales */
+  --light:         #e3deff; /* bordes suaves, líneas, fondos muy claros */
+  --text-in-bg:    #100c26; /* texto sobre botones claros o chips */
+  --text-secondary:#b7b0d9; /* texto secundario / metadatos */
+
+  /* Tipografías (como ya tenías) */
+  --font-primary:   MontserratAlternates-Regular;
+  --font-secondary: AzeretMono;
+  --font-bold:      MontserratAlternates-Bold;
+}
+
+
+  body {
+    background: var(--color-dark-bg);
+    color: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body,
+  input,
+  button {
+    font-family: var(--font-primary);
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  /* Estilos generales */
+
+  /* Button
+------------- */
+  .rt-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: none;
+    color: var(--text-in-bg);
+    background-color: var(--light);
+    border-radius: 12px;
+    font-size: 14px;
+    font-size: var(--font-secondary);
+    text-decoration: none;
+    font-weight: 800;
+    width: 116px;
+    height: 42px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+  .rt-button:hover,
+  .rt-button.active {
+    color: var(--text-in-bg);
+    background-color: var(--main-color);
+  }
+
+  .rt-button:focus {
+    color: var(--text-in-bg) !important;
+  }
+
+  .rt-button.style-1 {
+    width: 210px;
+    height: 44px;
+    gap: 10px;
+    flex-shrink: 0;
+    background-color: var(--blue);
+    color: var(--light);
+    font-size: 14px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+  }
+
+  .rt-button.style-1:hover,
+  .rt-button.style-1.active {
+    color: var(--text-in-bg);
+    background-color: var(--white);
+  }
+
+  .rt-button.style-1.active:hover {
+    background-color: var(--main-color);
+  }
+</style>

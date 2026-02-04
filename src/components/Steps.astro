@@ -1,0 +1,217 @@
+---
+import { Image } from "astro:assets";
+import pencil from "../assets/icons/pencil_icon.svg";
+import check from "../assets/icons/ep--circle-check.svg";
+import van from "../assets/icons/ep--van.svg";
+import shoppingCart from "../assets/icons/ep--shopping-cart-full.svg"; 
+import stepArrow from "../assets/icons/step_icon.svg";
+---
+
+<section class="steps">
+  <div class="steps__inner">
+    <h2 class="steps__title">
+      Paso a paso: <span>crea tu propia entrada conmemorativa</span>
+    </h2>
+
+    <div class="steps__row">
+      <!-- PASO 1 -->
+      <article class="step">
+        <div class="step__icon-box">
+          <span class="step__icon">
+            <Image src={pencil} alt="Icono de lápiz que rellena formulario"/>
+          </span>
+        </div>
+        <p class="step__label">PASO 1</p>
+        <h3 class="step__title">Cuéntanos tu concierto</h3>
+        <p class="step__text">
+          Rellena el <a href="#formulario" href="/contacto" target="_blank">formulario</a> con la fecha, el artista,
+          la ciudad y cualquier detalle especial.
+        </p>
+      </article>
+
+            <!-- FLECHA 1 -->
+      <div class="step-arrow">
+        <Image src={stepArrow} alt="Icono de flecha de pasos" />
+      </div>
+
+      <!-- PASO 2 -->
+      <article class="step">
+        <div class="step__icon-box">
+          <span class="step__icon">
+            <Image src={check} alt="Icono de check de verificación"/>
+          </span>
+        </div>
+        <p class="step__label">PASO 2</p>
+        <h3 class="step__title">Te enviamos una propuesta</h3>
+        <p class="step__text">
+          Te llegará por correo electrónico un diseño preliminar, el precio final
+          y el plazo de producción y envío.
+        </p>
+      </article>
+
+                  <!-- FLECHA 1 -->
+      <div class="step-arrow">
+        <Image src={stepArrow} alt="Icono de flecha de pasos" />
+      </div>
+
+      <!-- PASO 3 -->
+      <article class="step">
+        <div class="step__icon-box">
+          <span class="step__icon">
+             <Image src={shoppingCart} alt="Icono de carrito de compra"/>
+          </span>
+        </div>
+        <p class="step__label">PASO 3</p>
+        <h3 class="step__title">Confirma y paga de forma segura</h3>
+        <p class="step__text">
+          Si todo encaja, recibirás un enlace a Vinted (u otra plataforma)
+          para pagar con protección al comprador y elegir el envío.
+        </p>
+      </article>
+
+                  <!-- FLECHA 1 -->
+      <div class="step-arrow">
+        <Image src={stepArrow} alt="Icono de flecha de pasos" />
+      </div>
+
+      <!-- PASO 4 -->
+      <article class="step">
+        <div class="step__icon-box">
+          <span class="step__icon">
+             <Image src={van} alt="Icono de furgoneta de reparto"/>
+          </span>
+        </div>
+        <p class="step__label">PASO 4</p>
+        <h3 class="step__title">Producción y envío</h3>
+        <p class="step__text">
+          Tras el pago, producimos tu entrada conmemorativa, la enviamos
+          y te informamos del seguimiento.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+.steps {
+    padding: 4rem 0;
+  }
+
+  .steps__inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+
+  .steps__title {
+    font-family: var(--font-primary);
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--light);
+    margin-bottom: 3rem;
+  }
+
+  .steps__title span {
+    font-weight: 600;
+  }
+
+  /* fila con pasos y flechas intercaladas */
+  .steps__row {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    align-items: flex-start;
+    column-gap: 1.5rem;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--light);
+  }
+
+  .step__icon-box {
+    width: 88px;
+    height: 88px;
+    border-radius: 24px;
+    background: #111318;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .step__icon {
+    font-size: 2rem;
+  }
+
+  .step__label {
+    font-family: var(--font-secondary);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 0.4rem;
+  }
+
+  .step__title {
+    font-family: var(--font-secondary);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .step__text {
+    font-family: var(--font-secondary);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    width: 230px;
+    z-index: 99;
+    position: relative;
+    top: 1px;
+  }
+
+  .step__text a {
+    color: var(--main-color);
+    text-decoration: underline;
+  }
+
+  /* flecha entre pasos */
+  .step-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-arrow img {
+    width: 72px;
+    max-width: 100%;
+    height: auto;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 1180px) {
+    .steps__row {
+      grid-template-columns: 1fr;
+      row-gap: 2.5rem;
+    }
+
+    .step-arrow {
+      display: none; /* en móvil puedes ocultar o cambiar a una flecha vertical */
+    }
+
+      .step__text {
+    font-family: var(--font-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #b4b6c0;
+    max-width: 255px;
+    z-index: 0;
+    position: static;
+
+  }
+  }
+</style>
