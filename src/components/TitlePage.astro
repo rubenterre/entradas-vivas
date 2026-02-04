@@ -1,0 +1,39 @@
+---
+const { titular, subtitular } = Astro.props;
+---
+
+<div class="contacto__header">
+  <h1 class="contacto__h1">{titular}</h1>
+  <p class="contacto__p">
+    {subtitular}
+  </p>
+</div>
+
+<style>
+  .contacto__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 5rem 0px;
+    max-width: 628px;
+    margin: 0 auto;
+  }
+
+  .contacto__h1 {
+    font-family: var(--font-primary);
+    color: var(--light);
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .contacto__p {
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.7rem;
+  }
+</style>

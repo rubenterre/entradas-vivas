@@ -14,26 +14,26 @@ const particlesOptions = {
       color: "#111111",
       distance: 200,
       opacity: 0.35,
-      width: 1
+      width: 1,
     },
     move: {
       enable: true,
       speed: 1.2,
       direction: "none",
-      outModes: { default: "out" }
+      outModes: { default: "out" },
     },
     opacity: { value: 0.45 },
-    size: { value: 2, random: true }
+    size: { value: 2, random: true },
   },
   interactivity: {
     events: {
       onHover: { enable: true, mode: "repulse" },
       onClick: { enable: false },
-      resize: true
+      resize: true,
     },
-    modes: { repulse: { distance: 120 } }
+    modes: { repulse: { distance: 120 } },
   },
-  detectRetina: true
+  detectRetina: true,
 };
 ---
 
@@ -56,82 +56,84 @@ const particlesOptions = {
       </div>
     </div>
 
-    <div class="banner-right">
-      <Image class="banner__img" src={banner} alt="Imágenes de entradas de concierto" />
+    <div class="banner-right hide-on-med-and-down">
+      <Image
+        class="banner__img"
+        src={banner}
+        alt="Imágenes de entradas de concierto"
+      />
     </div>
   </div>
 </section>
 
-<!-- <script define:vars={{ particlesOptions }}>
-  import { tsParticles } from "tsparticles-engine";
-  import { loadFull } from "tsparticles";
+<script is:inline define:vars={{ particlesOptions }}>
+  const engine = document.createElement("script");
+  engine.src = "/libs/tsparticles/tsparticles.engine.min.js";
 
-  // se ejecuta solo en el cliente
-  (async () => {
-    await loadFull(tsParticles);
+  engine.onload = () => {
+    console.log("engine cargado", window.tsParticles);
 
-    const container = document.getElementById("bannerParticles");
-    if (container) {
-      tsParticles.load({
-        id: "bannerParticles",
-        element: container,
-        options: particlesOptions,
-      });
-    }
-  })();
-</script>
- -->
-<script define:vars={{ particlesOptions }}>
-  // Carga tsParticles desde CDN como script UMD
-  const script = document.createElement("script");
-  script.src = "https://cdn.jsdelivr.net/npm/tsparticles-engine@2.12.0/tsparticles.engine.min.js";
-  script.onload = async () => {
-    const mainScript = document.createElement("script");
-    mainScript.src = "https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js";
-    mainScript.onload = () => {
+    const bundle = document.createElement("script");
+    bundle.src = "/libs/tsparticles/tsparticles.bundle.min.js";
+
+    bundle.onload = () => {
+      console.log("bundle cargado", window.tsParticles);
+
       const container = document.getElementById("bannerParticles");
+      console.log("container", container);
+
       if (container && window.tsParticles) {
-        window.tsParticles.load({
-          id: "bannerParticles",
-          element: container,
-          options: particlesOptions,
-        });
+        window.tsParticles
+          .load({
+            id: "bannerParticles",
+            element: container,
+            options: particlesOptions,
+          })
+          .then((instance) => {
+            console.log("tsParticles iniciado", instance);
+          })
+          .catch((err) => {
+            console.error("Error al iniciar tsParticles", err);
+          });
+      } else {
+        console.error("No hay container o tsParticles no está en window");
       }
     };
-    document.body.appendChild(mainScript);
+
+    document.body.appendChild(bundle);
   };
-  document.body.appendChild(script);
+
+  document.body.appendChild(engine);
 </script>
 
 <style>
-.banner-wrapper {
-  background: var(--color-dark-bg);
-  padding: 3rem 1.5rem;
-  display: flex;
-  justify-content: center;
-}
+  .banner-wrapper {
+    background: var(--color-dark-bg);
+    padding: 3rem 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
 
-.banner {
-  position: relative;
-  width: 100%;
-  border-radius: 24px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  background: var(--white);
+  .banner {
+    position: relative;
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background: var(--white);
+  }
 
-}
-
-.banner__h1{
-  font-family: var(--font-secondary);
-  color: var(--color-dark-bg);
-  font-size: 2rem;
-  font-weight: 400;
-  margin-bottom: 1rem;
-  line-height: 3rem;
-}
-
+  .banner__h1 {
+    font-family: var(--font-secondary);
+    color: var(--color-dark-bg);
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    line-height: 3rem;
+  }
+  /* 
 .banner-buttons{
   display: flex;
   justify-content: space-between;
@@ -163,7 +165,7 @@ font-family: var(--font-secondary);
   background: var(--blue);
   color: var(--light);
   font-size: 1rem;
-  width: 230px;
+  width: 280px;
   border: 2px solid transparent;
 }
 
@@ -171,7 +173,7 @@ font-family: var(--font-secondary);
   background: var(--light);
   color: var(--bg-elevated);
   font-size: 1rem;
-  width: 190px;
+
   border: 2px solid var(--bg-elevated);
 
   & .btn__icon {
@@ -186,36 +188,157 @@ font-family: var(--font-secondary);
   background: var(--bg-elevated);
   color: var(--light);
   font-size: 1rem;
-  width: 230px;
   border: 2px solid var(--bg-elevated);
 
-}
+} */
 
+  .banner-buttons {
+    display: flex;
+    gap: 1rem;
+  }
 
-/* El canvas de partículas se limita al rectángulo del banner */
-.banner-particles {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
+  /* Base común */
 
-.banner-left{
-  padding-left: 2rem;
-}
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px;
+    height: 50px;
+    border-radius: 14px;
+    font-family: var(--font-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition:
+      background-color 0.18s ease,
+      color 0.18s ease,
+      box-shadow 0.18s ease,
+      transform 0.12s ease,
+      border-color 0.18s ease;
+  }
 
-/* contenido por encima del canvas */
-.banner-left,
-.banner-right {
-  position: relative;
-  z-index: 1;
-}
+  /* Secundario: borde de color, fondo claro */
 
-.banner-right{
-  height: 100%;
-}
+  .btn-secondary {
+    background: var(--white);
+      width: 190px;
+    color: var(--text-in-bg);
+    border-color: rgba(16, 12, 38, 0.14); /* sutil sobre fondo claro */
+  }
 
-.banner__img{
-  height: 100%;
-}
+  .btn-secondary .btn__icon {
+    filter: brightness(0) saturate(100%) invert(9%) sepia(11%) saturate(1496%)
+      hue-rotate(210deg) brightness(95%) contrast(90%);
+  }
+
+  /* hover secundario: chip cálido */
+
+  .btn-secondary:hover {
+    background: rgba(255, 123, 106, 0.16); /* accent-warm suave */
+    border-color: var(--accent-warm);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(255, 123, 106, 0.35);
+  }
+
+  .btn-secondary:hover .btn__icon {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(64%) saturate(2090%)
+      hue-rotate(329deg) brightness(102%) contrast(101%);
+  }
+
+  /* Primario: CTA coral */
+
+  .btn-primary {
+    background: var(--main-color);
+    color: var(--white);
+    width: 280px;
+    border-color: var(--main-color);
+    box-shadow: 0 4px 10px rgba(255, 48, 64, 0.45);
+  }
+
+  /* opcional: si el icono es oscuro, acláralo sobre el rojo */
+  .btn-primary img {
+    filter: brightness(0) invert(1);
+  }
+
+  /* hover primario: transición a acento cálido + toque violeta */
+
+  .btn-primary:hover {
+    background: linear-gradient(
+      90deg,
+      var(--main-color),
+      var(--accent-warm),
+      var(--blue)
+    );
+    background-size: 180% 100%;
+    background-position: 0% 50%;
+    border-color: var(--accent-warm);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 10px rgba(255, 48, 64, 0.55);
+  }
+
+  /* estado active para ambos */
+
+  .btn:active {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+  }
+
+  /* El canvas de partículas se limita al rectángulo del banner */
+  .banner-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* contenido por encima del canvas */
+  .banner-left,
+  .banner-right {
+    position: relative;
+    z-index: 1;
+  }
+
+  .banner-left {
+    padding: 1.5rem;
+  }
+
+  .banner-right {
+    height: 100%;
+  }
+
+  .banner__img {
+    height: 100%;
+  }
+
+  @media (max-width: 800px) {
+    .banner {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+
+    .banner__h1 {
+      font-size: 1.7rem;
+      line-height: 2rem;
+      text-align: center;
+    }
+
+    .banner-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-secondary {
+      width: 100%;
+    }
+
+    .btn-primary {
+      width: 100%;
+    }
+  }
 </style>

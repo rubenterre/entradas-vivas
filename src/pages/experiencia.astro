@@ -1,7 +1,632 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import arrow from "../assets/icons/arrow_icon.svg";
+import { Image } from "astro:assets";
+import img1 from "../assets/images/01.webp";
+import img2 from "../assets/images/02.webp";
+import img3 from "../assets/images/03.webp";
+import ticket from "../assets/images/ticket_why.webp";
+import custom from "../assets/images/custom_why.webp";
+import quality from "../assets/images/quality_why.webp";
+import Steps from "../components/Steps.astro";
 ---
 
 <Layout>
+  <section class="hero">
+    <div class="container">
+      <Header />
+      <div class="hero__content">
+        <h1 class="hero__h1">Revive la experiencia, no solo el concierto</h1>
+        <p class="hero__p">
+          Te acompañamos paso a paso para transformar tus recuerdos en una
+          entrada conmemorativa única, diseñada contigo y hecha para durar.
+        </p>
+        <div class="hero__buttons">
+          <a href="#" class="hero__button-form"
+            >Crea tu propia entrada
+            <img src={arrow.src} alt="Icono de flecha" />
+          </a>
+        </div>
+        <div class="hero__images hide-on-med-and-down">
+          <Image
+            class="hero__img"
+            src={img1}
+            alt="Imagen de gente en un concierto"
+          />
+          <Image
+            class="hero__img"
+            src={img2}
+            alt="Imagen de persona enseñando su entrada"
+          />
+          <Image
+            class="hero__img"
+            src={img3}
+            alt="Imagen de dos chicas felices en un concierto"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="why">
+    <div class="container">
+      <div class="hero__content">
+        <h1 class="hero__h1">¿Por qué elegirnos?</h1>
+        <p class="hero__p">
+          Desde la primera idea hasta que la recibes en casa, cuidamos cada
+          detalle del proceso: diseño, revisión, impresión y envío, para que
+          solo tengas que pensar en cómo fue aquella noche.
+        </p>
+      </div>
+      <div class="why__container">
+        <div class="why__card">
+          <Image src={ticket} alt="Imagen de una entrada conmemorativa" />
+          <h2 class="why__h2">Diseños únicos para tus recuerdos</h2>
+          <p class="why__p">
+            Cada entrada se crea a medida a partir de tu concierto y tus
+            preferencias, para que tengas una pieza irrepetible que solo existe
+            para ti.
+          </p>
+        </div>
+
+        <div class="why__card">
+          <Image
+            src={custom}
+            alt="Diseñadores trabajando con paleta de colores"
+          />
+          <h2 class="why__h2">Diseños únicos para tus recuerdos</h2>
+          <p class="why__p">
+            Cada entrada se crea a medida a partir de tu concierto y tus
+            preferencias, para que tengas una pieza irrepetible que solo existe
+            para ti.
+          </p>
+        </div>
+
+        <div class="why__card">
+          <Image
+            src={quality}
+            alt="Diseñadores escogiendo materiales para impresión"
+          />
+          <h2 class="why__h2">Diseños únicos para tus recuerdos</h2>
+          <p class="why__p">
+            Cada entrada se crea a medida a partir de tu concierto y tus
+            preferencias, para que tengas una pieza irrepetible que solo existe
+            para ti.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faqs">
+    <Steps />
+
+    <div class="faqs__container">
+      <header class="faqs__header">
+        <h2 class="faqs__title">Preguntas frecuentes</h2>
+      </header>
+
+      <div class="faqs__grid">
+        <div class="faqs__col">
+          <details class="faq">
+            <summary class="faq__summary">
+              <span class="faq__question"
+                >¿Cuánto cuesta una entrada conmemorativa?</span
+              >
+              <span class="faq__icon"></span>
+            </summary>
+            <div class="faq__content">
+              <p>
+                El precio depende del tipo de papel, acabados y cantidad.
+                Normalmente los encargos individuales comienzan en torno a un
+                rango accesible por unidad.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary class="faq__summary">
+              <span class="faq__question">¿Quién diseñará mis entradas?</span>
+              <span class="faq__icon"></span>
+            </summary>
+            <div class="faq__content">
+              <p>
+                Cada entrada es diseñada por nuestro equipo creativo
+                especializado en piezas conmemorativas, a partir de tus
+                referencias y del evento.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary class="faq__summary">
+              <span class="faq__question"
+                >¿Tengo que hacer un pedido mínimo?</span
+              >
+              <span class="faq__icon"></span>
+            </summary>
+            <div class="faq__content">
+              <p>
+                No hay pedido mínimo: puedes encargar desde una sola entrada
+                para ti hasta un lote para regalar a todo tu grupo.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary class="faq__summary">
+              <span class="faq__question"
+                >¿Cuánto cuestan los gastos de envío?</span
+              >
+              <span class="faq__icon"></span>
+            </summary>
+            <div class="faq__content">
+              <p>
+                Los gastos de envío se calculan automáticamente según tu país y
+                la cantidad de entradas en el pedido antes de confirmar el pago.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary class="faq__summary">
+              <span class="faq__question"
+                >¿Están fabricadas con materiales sostenibles?</span
+              >
+              <span class="faq__icon"></span>
+            </summary>
+            <div class="faq__content">
+              <p>
+                Trabajamos con papeles certificados y proveedores que priorizan
+                procesos responsables siempre que es posible.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <div class="faqs__col">
+          <details class="faq">
+            <summary class="faq__summary">
+              <span class="faq__question"
+                >¿Cuánto tardáis en fabricar unas entradas?</span
+              >
+              <span class="faq__icon"></span>
+            </summary>
+            <div class="faq__content">
+              <p>
+                El tiempo medio de producción suele ser de varios días
+                laborables desde que apruebas el diseño final, más el plazo de
+                envío.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary class="faq__summary">
+              <span class="faq__question">¿Puedo enviar mi propio diseño?</span>
+              <span class="faq__icon"></span>
+            </summary>
+            <div class="faq__content">
+              <p>
+                Sí, puedes adjuntar tu diseño y lo adaptaremos al formato de
+                nuestras entradas para garantizar un buen resultado de
+                impresión.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary class="faq__summary">
+              <span class="faq__question">¿Hay pedido máximo?</span>
+              <span class="faq__icon"></span>
+            </summary>
+            <div class="faq__content">
+              <p>
+                Podemos gestionar tanto pedidos pequeños como series más
+                grandes. Para grandes volúmenes, contáctanos y te haremos una
+                propuesta a medida.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary class="faq__summary">
+              <span class="faq__question">¿Puedo pedir factura?</span>
+              <span class="faq__icon"></span>
+            </summary>
+            <div class="faq__content">
+              <p>
+                Por supuesto, solo tienes que contactarnos y facilitarnos los
+                datos fiscales a la hora de realizar el pedido y te enviaremos
+                la factura correspondiente.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary class="faq__summary">
+              <span class="faq__question"
+                >¿En qué marketplace os podemos encontrar?</span
+              >
+              <span class="faq__icon"></span>
+            </summary>
+            <div class="faq__content">
+              <p>
+                Además de esta web, podrás encontrarnos en los principales
+                marketplaces creativos donde iremos publicando nuevas
+                colecciones.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="faqs__footer">
+        <p class="faqs__footer-title">¿Todavía tienes preguntas?</p>
+        <p class="faqs__footer-text">
+          ¿No encuentras lo que estás buscando? Por favor, escribe a nuestro
+          equipo, estaremos encantados de atenderte.
+        </p>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .hero {
+    background:
+      linear-gradient(
+        180deg,
+        rgb(34 22 59 / 97%) 0%,
+        rgb(34 22 59 / 76%) 40%,
+        rgba(34, 22, 59, 1) 100%
+      ),
+      url(../assets/aplausos_fondo_hero.webp);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .hero__content {
+    max-width: 628px;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  .hero__h1 {
+    font-family: var(--font-primary);
+    color: var(--light);
+    font-weight: 400;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .hero__p {
+    font-family: var(--font-secondary);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    line-height: 22px;
+    margin: 2rem 0px;
+  }
+
+  .hero__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .hero__button-form {
+    font-family: var(--font-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    width: 332px;
+    height: 50px;
+    border-radius: 14px;
+    text-decoration: none;
+    background: var(--blue);
+    color: var(--white);
+    height: 44px;
+  }
+
+  /* icono claro sobre fondo oscuro */
+  .hero__button-form .btn__icon {
+    filter: brightness(0) invert(1);
+  }
+
+  /* hover: mezcla azul + coral para darle carácter de CTA */
+
+  .hero__button-form:hover {
+    background: linear-gradient(90deg, var(--blue), var(--main-color));
+    background-size: 180% 100%;
+    background-position: 0% 50%;
+    transform: translateY(-1px);
+  }
+
+  .hero__images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0px;
+  }
+
+  .hero__img {
+    height: 343px;
+  }
+
+  @media (max-width: 780px) {
+    
+    .why__container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+  }
+
+  @media (max-width: 550px) {
+    .hero {
+      background:
+        linear-gradient(
+          180deg,
+          rgb(34 22 59 / 97%) 0%,
+          rgb(34 22 59 / 76%) 40%,
+          rgba(34, 22, 59, 1) 100%
+        ),
+        url(../assets/aplausos_fondo_hero.webp);
+
+      background-position: bottom;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .hero__buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+  }
+
+  /* Why */
+
+  .why {
+    background-color: var(--color-dark-bg);
+    margin: 2rem 0px;
+  }
+
+  .why__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .why__card {
+    background: var(--card-bg);
+    border-radius: 32px;
+    padding: 20px 20px 24px;
+    color: var(--light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-height: 360px;
+  }
+
+  .why__h2 {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--light);
+    text-align: center;
+  }
+
+  .why__p {
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 2rem;
+  }
+
+  /* faqs */
+
+  .faqs {
+    background: var(--color-dark-bg);
+    padding: 5rem 1.5rem;
+    color: var(--white);
+  }
+
+  .faqs__container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-secondary);
+  }
+
+  .faqs__header {
+    margin-bottom: 3rem;
+  }
+
+  .faqs__title {
+    font-family: var(--font-primary);
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--white);
+  }
+
+  /* GRID */
+
+  .faqs__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .faqs__col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  /* DETAILS / SUMMARY AS PILL */
+
+  .faq {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
+    overflow: hidden;
+  }
+
+  /* quitamos el marcador por defecto */
+  .faq > summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq > summary {
+    list-style: none;
+  }
+
+  /* cabecera */
+
+  .faq__summary {
+    padding: 0.95rem 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    gap: 1rem;
+  }
+
+  .faq__question {
+    font-size: 0.95rem;
+    color: var(--light);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* icono + / – */
+
+  .faq__icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    border: 1px solid rgba(227, 222, 255, 0.4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .faq__icon::before,
+  .faq__icon::after {
+    content: "";
+    position: absolute;
+    background: var(--light);
+    transition:
+      transform 0.18s ease,
+      opacity 0.18s ease;
+  }
+
+  .faq__icon::before {
+    width: 12px;
+    height: 2px;
+  }
+
+  .faq__icon::after {
+    width: 2px;
+    height: 12px;
+  }
+
+  /* Contenido desplegado */
+
+  .faq__content {
+    padding: 1.4rem 1.1rem;
+    text-align: left;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  /* Estados hover / abierto */
+
+  .faq:hover .faq__summary {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 48, 64, 0.16),
+      rgba(123, 50, 255, 0.12)
+    );
+  }
+
+  .faq:hover .faq__icon {
+    border-color: var(--accent-warm);
+  }
+
+  .faq:hover .faq__icon::before,
+  .faq:hover .faq__icon::after {
+    background: var(--accent-warm);
+  }
+
+  /* cuando está abierto, convertimos el + en – */
+
+  .faq[open] .faq__icon::after {
+    transform: scaleY(0);
+  }
+
+  .faq[open] .faq__summary {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 48, 64, 0.22),
+      rgba(123, 50, 255, 0.18)
+    );
+  }
+
+  /* FOOTER */
+
+  .faqs__footer-title {
+    font-size: 0.9rem;
+    color: var(--light);
+    margin-bottom: 0.4rem;
+  }
+
+  .faqs__footer-text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+
+  /* RESPONSIVE */
+
+  @media (max-width: 768px) {
+    .faqs {
+      padding: 4rem 1.25rem;
+    }
+
+    .faqs__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .faq {
+      border-radius: 20px;
+    }
+
+    .faq__question {
+      white-space: normal;
+    }
+  }
+</style>

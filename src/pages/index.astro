@@ -2,13 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import TicketSlider from "../components/TicketSlider.astro";
-import { Image } from "astro:assets";
 import arrow from "../assets/icons/arrow_icon.svg";
 import arrowBlack from "../assets/icons/arrow_icon-black.svg";
 import Recommended from "../components/Recommended.astro";
 import Steps from "../components/Steps.astro";
 import Banner from "../components/Banner.astro";
 import Catalog from "../components/Catalog.astro";
+import Title from "../components/Title.astro";
 ---
 
 <Layout>
@@ -24,25 +24,25 @@ import Catalog from "../components/Catalog.astro";
         <div class="hero__buttons">
           <a href="#" class="hero__button-descubre"
             >Descubre más
-            <Image src={arrowBlack} alt="Icono de flecha" />
+            <img class="btn__icon" src={arrowBlack.src} alt="Icono de flecha" />
           </a>
           <a href="#" class="hero__button-form"
             >Crea tu propia entrada
-            <Image src={arrow} alt="Icono de flecha" />
+            <img class="btn__icon" src={arrow.src} alt="Icono de flecha" />
           </a>
         </div>
       </div>
     </div>
 
     <TicketSlider />
-
   </section>
 
   <div class="container">
     <Recommended />
-    <Steps/>
+    <Steps />
     <Banner />
-    <Catalog/>
+    <Title title="Revivir experiencias" url="/" />
+    <Catalog />
   </div>
 </Layout>
 
@@ -51,12 +51,12 @@ import Catalog from "../components/Catalog.astro";
     background:
       linear-gradient(
         180deg,
-        rgb(22 22 22 / 97%) 0%,
-        rgb(22 22 22 / 76%) 40%,
-        rgba(22, 22, 22, 0) 89%,
-        rgba(22, 22, 22, 1) 100%
+        rgb(34 22 59 / 97%) 0%,
+        rgb(34 22 59 / 76%) 40%,
+        rgba(34, 22, 59, 1) 100%
       ),
       url(../assets/aplausos_fondo_hero.webp);
+
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -86,44 +86,105 @@ import Catalog from "../components/Catalog.astro";
     margin-top: 2rem;
   }
 
-  .hero__buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
+.hero__buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
 
-  .hero__button-descubre {
-    font-family: var(--font-secondary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    width: 190px;
-    height: 50px;
-    border-radius: 14px;
-    background-color: var(--light);
-    text-decoration: none;
-    color: var(--color-dark-bg);
-  }
+/* base común */
 
-  .hero__button-form {
-    font-family: var(--font-secondary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    width: 332px;
-    height: 50px;
-    border-radius: 14px;
-    background-color: var(--blue);
-    text-decoration: none;
-    color: var(--light);
-  }
+.hero__buttons a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.7rem;
+  border-radius: 12px;
+  font-family: var(--font-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  height: 44px;
+  transition:
+    all 0.18s ease;
+}
+
+/* botón “Descubre más”: secundario sobre fondo claro */
+
+.hero__button-descubre {
+  height: 44px;
+  background: var(--light);
+  color: var(--text-in-bg);
+}
+
+.hero__button-descubre .btn__icon {
+  filter: brightness(0) saturate(100%) invert(9%) sepia(11%) saturate(1496%)
+    hue-rotate(210deg) brightness(95%) contrast(90%);
+}
+
+.hero__button-descubre:hover {
+  background: var(--text-secondary);
+  transform: translateY(-1px);
+}
+
+.hero__button-descubre:hover .btn__icon {
+  filter: brightness(0) saturate(100%) invert(48%) sepia(64%) saturate(2090%)
+    hue-rotate(329deg) brightness(102%) contrast(101%);
+}
+
+/* botón “Crea tu propia entrada”: principal en azul violeta */
+
+.hero__button-form {
+  background: var(--blue);
+  color: var(--white);
+  height: 44px;
+}
+
+/* icono claro sobre fondo oscuro */
+.hero__button-form .btn__icon {
+  filter: brightness(0) invert(1);
+}
+
+/* hover: mezcla azul + coral para darle carácter de CTA */
+
+.hero__button-form:hover {
+  background: linear-gradient(
+    90deg,
+    var(--blue),
+    var(--main-color)
+  );
+  background-size: 180% 100%;
+  background-position: 0% 50%;
+ transform: translateY(-1px);
+}
+
+/* estado activo común */
+
+.hero__buttons a:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
 
   @media (max-width: 550px) {
+
+      .hero {
+    background:
+      linear-gradient(
+        180deg,
+        rgb(34 22 59 / 97%) 0%,
+        rgb(34 22 59 / 76%) 40%,
+        rgba(34, 22, 59, 1) 100%
+      ),
+      url(../assets/aplausos_fondo_hero.webp);
+
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
     .hero__buttons {
       display: flex;
       flex-direction: column;

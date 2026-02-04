@@ -1,80 +1,82 @@
 ---
-import { Image } from "astro:assets";
 import logo from "../assets/entradasvivas_logo.svg";
 import instagramIcon from "../assets/socials/instagram_icon.svg";
 import vintedIcon from "../assets/socials/vinted_icon.svg";
-
 ---
 
 <footer class="footer">
-    <div class="container">
+  <div class="container">
+    <div class="footer__top">
+      <!-- Logo -->
+      <div class="footer__column footer__brand">
+        <img class="footer__logo" src={logo.src} alt="Entradas Vivas" />
+      </div>
+      <!-- Mapa del sitio -->
+      <nav class="footer__column">
+        <h3 class="footer__heading">Mapa del sitio</h3>
+        <ul class="footer__list">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/catalogo">Catálogo</a></li>
+          <li><a href="/experiencia">Experiencia</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+          <li><a href="/aviso-legal">Aviso legal</a></li>
+        </ul>
+      </nav>
 
-  
-  <div class="footer__top">
-    <!-- Logo -->
-    <div class="footer__column footer__brand">
-      <Image src={logo} alt="Entradas Vivas" />
-    </div>
-    <!-- Mapa del sitio -->
-    <nav class="footer__column">
-      <h3 class="footer__heading">Mapa del sitio</h3>
-      <ul class="footer__list">
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/catalogo">Catálogo</a></li>
-        <li><a href="/experiencia">Experiencia</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-        <li><a href="/aviso-legal">Aviso legal</a></li>
-      </ul>
-    </nav>
+      <!-- Aviso legal -->
+      <nav class="footer__column">
+        <h3 class="footer__heading">Aviso legal</h3>
+        <ul class="footer__list">
+          <li><a href="/aviso-legal">Aviso legal</a></li>
+          <li><a href="/privacidad">Política de privacidad</a></li>
+          <li><a href="/condiciones">Condiciones del servicio</a></li>
+          <li><a href="/creditos">Créditos</a></li>
+        </ul>
+      </nav>
 
-    <!-- Aviso legal -->
-    <nav class="footer__column">
-      <h3 class="footer__heading">Aviso legal</h3>
-      <ul class="footer__list">
-        <li><a href="/aviso-legal">Aviso legal</a></li>
-        <li><a href="/privacidad">Política de privacidad</a></li>
-        <li><a href="/condiciones">Condiciones del servicio</a></li>
-        <li><a href="/creditos">Créditos</a></li>
-      </ul>
-    </nav>
+      <!-- Contacto -->
+      <div class="footer__column footer__column--contact">
+        <h3 class="footer__heading">Contacto</h3>
+        <ul class="footer__list">
+          <li><a href="/ayuda">Ayuda</a></li>
+        </ul>
 
-    <!-- Contacto -->
-    <div class="footer__column footer__column--contact">
-      <h3 class="footer__heading">Contacto</h3>
-      <ul class="footer__list">
-        <li><a href="/ayuda">Ayuda</a></li>
-      </ul>
-
-      <div class="footer__social">
-        <p class="footer__social-label">Síguenos</p>
-        <div class="footer__social-icons">
-          <a href="https://www.instagram.com/entradasvivas" aria-label="Instagram">
-            <span class="social-icon">
-                <Image src={instagramIcon} alt="Icono de Instagram"/>
-            </span>
-          </a>
-          <a href="https://www.vinted.es/member/218969721" aria-label="Vinted">
-            <span class="social-icon">
-                <Image src={vintedIcon} alt="Icono de Vinted"/>
-            </span>
-          </a>
+        <div class="footer__social">
+          <p class="footer__social-label">Síguenos</p>
+          <div class="footer__social-icons">
+            <a
+              href="https://www.instagram.com/entradasvivas"
+              aria-label="Instagram"
+            >
+              <span class="social-icon">
+                <img src={instagramIcon.src} alt="Icono de Instagram" />
+              </span>
+            </a>
+            <a
+              href="https://www.vinted.es/member/218969721"
+              aria-label="Vinted"
+            >
+              <span class="social-icon">
+                <img src={vintedIcon.src} alt="Icono de Vinted" />
+              </span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="footer__divider"></div>
+    <div class="footer__divider"></div>
 
-  <div class="footer__bottom">
-    <p class="footer__copy">
-      © 2026 Entradas Vivas de Irina Meixus – Made by Rubén Terré
-    </p>
-    <div class="footer__bottom-links">
-      <a href="/privacidad">Política de privacidad</a>
-      <a href="/condiciones">Condiciones del servicio</a>
+    <div class="footer__bottom">
+      <p class="footer__copy">
+        © 2026 Entradas Vivas de Irina Meixus - Diseñado y desarrollado por <a class="footer__a" href="https://rubenterre.com" target="_blank">Rubén Terré</a> 
+      </p>
+      <div class="footer__bottom-links">
+        <a href="/privacidad">Política de privacidad</a>
+        <a href="/condiciones">Condiciones del servicio</a>
+      </div>
     </div>
   </div>
-    </div>
 </footer>
 
 <style>
@@ -90,12 +92,11 @@ import vintedIcon from "../assets/socials/vinted_icon.svg";
     padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
-
   }
 
-  .footer__brand img {
-    max-width: 140px;
-    height: auto;
+  .footer__logo{
+    width: 140px;
+    max-height: 99px;
   }
 
   .footer__heading {
@@ -124,6 +125,15 @@ import vintedIcon from "../assets/socials/vinted_icon.svg";
   }
 
   .footer__list a:hover {
+    color: var(--main-color);
+  }
+
+  .footer__a{
+        font-family: var(--font-secondary);
+    color: var(--text-secondary);
+  }
+
+  .footer__a:hover{
     color: var(--main-color);
   }
 
@@ -159,7 +169,6 @@ import vintedIcon from "../assets/socials/vinted_icon.svg";
   }
 
   .footer__divider {
-   
     margin: 2rem auto 1.5rem;
     border-bottom: 1px solid #24272d;
   }
@@ -195,10 +204,14 @@ import vintedIcon from "../assets/socials/vinted_icon.svg";
   }
 
   @media (max-width: 900px) {
+
+
     .footer__top {
-      grid-template-columns: 1fr 1fr;
-      row-gap: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
+
   }
 
   @media (max-width: 640px) {
