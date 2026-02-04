@@ -1,4 +1,7 @@
-<img src="public/favicon.svg" alt="Vista previa de Entradas Vivas" width="120" />
+<p align="center">
+  <img src="public/preview.png" alt="Vista previa" width="600" />
+</p>
+
 # Entradas Vivas
 
 Plataforma web para consultar un catálogo de **entradas conmemorativas** de eventos (conciertos, festivales, etc.) y gestionar solicitudes para crear diseños personalizados que recuerden la experiencia de haber asistido a ese acontecimiento. 
