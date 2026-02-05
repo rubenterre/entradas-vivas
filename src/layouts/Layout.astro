@@ -1,7 +1,13 @@
 ---
 import "../styles/global.scss";
 
-import Footer from "../components/Footer.astro";
+interface Props {
+  slug?: string;
+}
+
+import Footer from "../components/layout/Footer.astro";
+
+const {slug} = Astro.props
 ---
 
 <!doctype html>
@@ -11,7 +17,7 @@ import Footer from "../components/Footer.astro";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Entradas Vivas - Entradas conmemorativas de eventos</title>
+    <title>{slug} - Entradas Vivas - Entradas conmemorativas de eventos</title>
   </head>
   <body>
     <slot />
