@@ -1,0 +1,210 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/layout/Header.astro";
+const siteName = "Entradas Vivas";
+const legalName = "Irina Meixús Varela";
+const address = "Vilagarcía de Arousa";
+const domain = "https://entradasvivas.netlyfy.app";
+---
+
+<Layout>
+    <div class="container">
+    <Header/>
+  <main class="legal-page">
+    <div class="legal-container">
+      <p class="legal-kicker">Información legal</p>
+
+      <h1 class="legal-title">
+        Condiciones del servicio y venta
+      </h1>
+
+      <p class="legal-intro">
+        Las presentes Condiciones del servicio regulan la contratación de
+        productos ofrecidos a través del Sitio web
+        <span class="legal-highlight">{domain}</span>
+        (en adelante, el “Sitio web”), titularidad de
+        <span class="legal-highlight-strong">{legalName}</span>
+        (en adelante, la “Titular”).
+      </p>
+
+      <!-- 1. Identidad de la Titular -->
+      <section class="legal-block legal-block--bordered">
+        <h2 class="legal-heading">1. Identidad de la Titular</h2>
+        <ul class="legal-list">
+          <li>
+            <span class="legal-label">Titular:</span>
+            {legalName}
+          </li>
+          <li>
+            <span class="legal-label">Domicilio:</span>
+            {address}
+          </li>
+          <li>
+            <span class="legal-label">Dominio:</span>
+            {domain}
+          </li>
+        </ul>
+      </section>
+
+      <!-- 2. Objeto del servicio -->
+      <section class="legal-block">
+        <h2 class="legal-heading">2. Objeto del servicio</h2>
+        <p class="legal-text">
+          A través del Sitio web, la Titular ofrece el diseño y producción
+          de <span class="legal-highlight-strong">entradas conmemorativas personalizadas</span>
+          de eventos como conciertos, festivales y otros acontecimientos,
+          destinadas exclusivamente a recordar la experiencia vivida por la
+          persona usuaria. Estas piezas no son entradas reales ni permiten
+          el acceso a ningún evento. 
+        </p>
+        <p class="legal-text">
+          El Sitio web permite consultar diseños, enviar solicitudes de
+          personalización y gestionar encargos de creación de entradas
+          conmemorativas personalizadas. 
+        </p>
+      </section>
+
+      <!-- 3. Carácter no oficial de los productos -->
+      <section class="legal-block legal-block--bordered">
+        <h2 class="legal-heading">3. Carácter no oficial de las entradas</h2>
+        <p class="legal-text">
+          Las entradas conmemorativas ofrecidas a través del Sitio web no son
+          oficiales ni están patrocinadas, aprobadas o relacionadas de ningún
+          modo con artistas, grupos, promotores, recintos, marcas comerciales
+          ni organizadores de eventos, salvo indicación expresa en contrario.
+          Cualquier referencia a ciudades, fechas o descripciones de conciertos
+          tiene una finalidad meramente descriptiva de la experiencia vivida
+          por la persona usuaria. 
+        </p>
+        <p class="legal-text">
+          La Titular no utiliza logotipos oficiales, tipografías registradas
+          ni diseños originales de entradas reales. En caso de que la persona
+          usuaria solicite la inclusión de elementos que puedan infringir
+          derechos de terceros (marcas, fotografías, diseños ajenos, etc.),
+          la Titular podrá rechazar o adaptar el encargo. 
+        </p>
+      </section>
+
+      <!-- 4. Contenidos aportados por la persona usuaria -->
+      <section class="legal-block">
+        <h2 class="legal-heading">
+          4. Contenidos aportados para la personalización
+        </h2>
+        <p class="legal-text">
+          La persona usuaria garantiza que dispone de los derechos necesarios
+          sobre los textos, imágenes u otros contenidos que facilite para
+          personalizar su entrada conmemorativa, y que dichos contenidos no
+          vulneran derechos de propiedad intelectual, de marca, de imagen ni
+          otros derechos de terceros. 
+        </p>
+        <p class="legal-text">
+          La persona usuaria mantendrá indemne a la Titular frente a
+          cualquier reclamación de terceros derivada de contenidos aportados
+          por ella misma para la personalización del producto. 
+        </p>
+      </section>
+
+      <!-- 5. Naturaleza de productos personalizados -->
+      <section class="legal-block legal-block--bordered">
+        <h2 class="legal-heading">
+          5. Naturaleza de los productos personalizados
+        </h2>
+        <p class="legal-text">
+          Las entradas conmemorativas se elaboran de forma
+          <span class="legal-highlight-strong">personalizada</span> según las
+          indicaciones de la persona usuaria. Debido a esta naturaleza, una
+          vez confirmado el diseño y realizado el pago, no será posible
+          cancelar el pedido ni ejercer el derecho de desistimiento, salvo en
+          los casos legalmente previstos (producto defectuoso o error
+          imputable a la Titular). 
+        </p>
+        <p class="legal-text">
+          La persona usuaria es responsable de revisar cuidadosamente textos,
+          fechas y demás datos antes de aprobar el diseño definitivo. Cualquier
+          error en la información facilitada no dará derecho a reembolso,
+          sin perjuicio de que la Titular pueda ofrecer soluciones comerciales
+          a su discreción. 
+        </p>
+      </section>
+
+      <!-- 6. Precios, pagos y envíos -->
+      <section class="legal-block">
+        <h2 class="legal-heading">6. Precios, pagos y envíos</h2>
+        <p class="legal-text">
+          Los precios de los productos se muestran en euros e incluyen los
+          impuestos aplicables, salvo indicación expresa en contrario. Antes
+          de finalizar la solicitud se informará de los gastos de envío
+          correspondientes, en su caso.
+        </p>
+        <p class="legal-text">
+          El pago se realizará mediante los métodos indicados por la Titular
+          en cada momento. Los plazos de producción y entrega serán
+          orientativos y se comunicarán durante el proceso de contratación,
+          pudiendo variar por causas ajenas a la Titular (incidencias
+          logísticas, festivos, etc.). 
+        </p>
+      </section>
+
+      <!-- 7. Propiedad intelectual de los diseños -->
+      <section class="legal-block legal-block--bordered">
+        <h2 class="legal-heading">
+          7. Propiedad intelectual de los diseños
+        </h2>
+        <p class="legal-text">
+          Los diseños, composiciones gráficas y plantillas de entradas
+          conmemorativas creados por la Titular son de su titularidad o se
+          explotan en virtud de las licencias correspondientes. La compra de
+          un producto no implica la cesión de derechos de explotación sobre
+          el diseño, más allá del uso privado del soporte físico adquirido.
+        </p>
+        <p class="legal-text">
+          Queda prohibida la reproducción, distribución, comunicación pública,
+          transformación o utilización de los diseños con fines comerciales,
+          salvo autorización previa y por escrito de la Titular. 
+        </p>
+      </section>
+
+      <!-- 8. Uso de las entradas conmemorativas -->
+      <section class="legal-block">
+        <h2 class="legal-heading">8. Uso de las entradas conmemorativas</h2>
+        <p class="legal-text">
+          Las entradas conmemorativas tienen una finalidad <u><strong>meramente decorativa</strong></u>
+          y de recuerdo personal. La Titular no se hace responsable del uso
+          que la persona usuaria haga de las mismas, en particular si se
+          utilizan de forma que pueda generar confusión con entradas reales
+          o con productos oficiales de terceros. 
+        </p>
+      </section>
+
+      <!-- 9. Limitación de responsabilidad -->
+      <section class="legal-block legal-block--bordered">
+        <h2 class="legal-heading">9. Limitación de responsabilidad</h2>
+        <p class="legal-text">
+          Dentro de los límites establecidos por la normativa aplicable, la
+          Titular no será responsable de daños indirectos, lucro cesante o
+          pérdida de oportunidad derivados del uso del Sitio web o de los
+          productos contratados. 
+        </p>
+      </section>
+
+      <!-- 10. Legislación aplicable y jurisdicción -->
+      <section class="legal-block">
+        <h2 class="legal-heading">10. Legislación aplicable y jurisdicción</h2>
+        <p class="legal-text">
+          Las presentes Condiciones del servicio se rigen por la legislación
+          española. Para cualquier controversia derivada de la contratación
+          a través del Sitio web, las partes se someterán a los Juzgados y
+          Tribunales de {address}, salvo que la normativa imperativa en
+          materia de consumidores disponga otro fuero distinto. 
+        </p>
+      </section>
+
+      <p class="legal-updated">
+        Última actualización: 05 de febrero de 2026.
+      </p>
+    </div>
+  </main>
+  </div>
+</Layout>
+
+<!-- Estilos en global.scss -->

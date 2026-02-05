@@ -1,7 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/layout/Header.astro";
-import { Image } from "astro:assets";
+import Button from "../../components/ui/Button.astro";
+
+import { Swiper, SwiperWrapper, SwiperSlide } from "astro-swiper";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface Producto {
   slug: string;
@@ -13,16 +19,14 @@ interface Producto {
 const { slug } = Astro.params;
 const { producto } = Astro.props as { producto: Producto };
 
-// 1) Definir los paths estáticos
 export async function getStaticPaths() {
   const productos: Producto[] = [
     {
-      slug: 'edicion-conmemorativa-tini-tours-2023',
-      titulo: 'Edición conmemorativa Tini Tours 2023',
-      precio: '4,38',
-      img:'/entradas/emilia_menes.webp'
+      slug: "edicion-conmemorativa-tini-tours-2023",
+      titulo: "Edición conmemorativa Tini Tours 2023",
+      precio: "4,38",
+      img: "/entradas/emilia_menes.webp",
     },
-    // aquí añades más productos
   ];
 
   return productos.map((producto) => ({
@@ -30,223 +34,371 @@ export async function getStaticPaths() {
     props: { producto },
   }));
 }
-
 ---
+
 <Layout slug={slug}>
+  <div class="container">
+    <Header />
 
-    <div class="container">
-    <Header/>
+    <!-- Bloque card de producto -->
+    <section class="ticket-product">
+      <div class="ticket-product__inner">
+        <!-- Lado izquierdo: mockup de la entrada -->
+        <article class="ticket-preview">
+          <Swiper
+            class="featured-carousel"
+            options={{
+              direction: "horizontal",
+              slidesPerView: 1,
+              spaceBetween: 30,
+              loop: true,
+              navigation: {
+                nextEl: ".featured-next",
+                prevEl: ".featured-prev",
+              },
+              pagination: {
+                el: ".featured-pagination",
+                clickable: true,
+                renderBullet: (index, className) =>
+                  `<span class="${className}">+</span>`,
+              },
+              breakpoints: {
+                640: { slidesPerView: 1 },
+                1024: { slidesPerView: 1 },
+              },
+            }}
+          >
+            <SwiperWrapper>
+              <SwiperSlide>
+                <img
+                  class="ticket-preview__img"
+                  src={producto.img}
+                  alt={producto.titulo}
+                />
+              </SwiperSlide>
 
-<!-- Bloque card de producto -->
-<section class="ticket-product">
-  <div class="ticket-product__inner">
-    <!-- Lado izquierdo: mockup de la entrada -->
-    <article class="ticket-preview">
-      <div class="ticket-preview__canvas">
-        <img class="ticket-preview__img" src={producto.img} alt={producto.titulo}/>
-      </div>
-    </article>
+              <SwiperSlide>
+                <img
+                  class="ticket-preview__img"
+                  src={producto.img}
+                  alt={producto.titulo}
+                />
+              </SwiperSlide>
 
-    <!-- Lado derecho: ficha de producto -->
-    <aside class="ticket-info">
-      <header class="ticket-info__header">
-        <h1 class="ticket-info__title">Edición conmemorativa Tini Tours 2023</h1>
-        <p class="ticket-info__price">€4,38</p>
-        <a class="ticket-info__cta" href="#" target="_blank" rel="noopener">
+              <SwiperSlide>
+                <img
+                  class="ticket-preview__img"
+                  src={producto.img}
+                  alt={producto.titulo}
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  class="ticket-preview__img"
+                  src={producto.img}
+                  alt={producto.titulo}
+                />
+              </SwiperSlide>
+            </SwiperWrapper>
+
+            <!-- Botones de navegación estilo demo Navigation -->
+            <button class="featured-prev swiper-button-prev" type="button"
+            ></button>
+            <button class="featured-next swiper-button-next" type="button"
+            ></button>
+            <div class="featured-pagination__container">
+              <div class="featured-pagination"></div>
+            </div>
+          </Swiper>
+        </article>
+
+        <!-- Lado derecho: ficha de producto -->
+        <aside class="ticket-info">
+          <header class="ticket-info__header">
+            <h1 class="ticket-info__title">
+              Edición conmemorativa Tini Tours 2023
+            </h1>
+            <p class="ticket-info__price">€4,38</p>
+            <!-- <a class="ticket-info__cta" href="#" target="_blank" rel="noopener">
           Comprar en Vinted
-        </a>
-      </header>
+        </a> -->
+            <Button variant="primary" href="/" label="Comprar en Vinted" />
+          </header>
 
-      <div class="ticket-info__body">
-        <p class="ticket-info__text">
-          Entradas conmemorativas de Taylor Swift “The Eras Tour”, personalizables y plastificadas.
-        </p>
-        <p class="ticket-info__text">
-          Diseño y realización de entradas conmemorativas personalizadas (fecha, hora,
-          lugar, tipo de entrada, precio...), hechas con mucho cariño para los verdaderos fans.
-        </p>
-        <ul class="ticket-info__list">
-          <li>Disponible en cualquier idioma.</li>
-          <li>Envío de muestra digital previa a la impresión.</li>
-          <li>Producción bajo pedido, sin stock preimpreso.</li>
-        </ul>
-        <p class="ticket-info__disclaimer">
-          NO SON ENTRADAS OFICIALES, son piezas de recuerdo de concierto para aficionados.
-        </p>
+          <div class="ticket-info__body">
+            <p class="ticket-info__text">
+              Entradas conmemorativas de Taylor Swift “The Eras Tour”,
+              personalizables y plastificadas.
+            </p>
+            <p class="ticket-info__text">
+              Diseño y realización de entradas conmemorativas personalizadas
+              (fecha, hora, lugar, tipo de entrada, precio...), hechas con mucho
+              cariño para los verdaderos fans.
+            </p>
+            <ul class="ticket-info__list">
+              <li>Disponible en cualquier idioma.</li>
+              <li>Envío de muestra digital previa a la impresión.</li>
+              <li>Producción bajo pedido, sin stock preimpreso.</li>
+            </ul>
+            <p class="ticket-info__disclaimer">
+              NO SON ENTRADAS OFICIALES, son piezas de recuerdo de concierto
+              para aficionados.
+            </p>
+          </div>
+        </aside>
       </div>
-    </aside>
+    </section>
   </div>
-</section>
-</div>
 </Layout>
 
-
 <style>
-    /* Contenedor principal del módulo */
-.ticket-product {
-  padding: 3rem 1.5rem;
-  display: flex;
-  justify-content: center;
-}
+  /* Contenedor principal del módulo */
+  .ticket-product {
+    padding: 3rem 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
 
-.ticket-product__inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: 3rem;
-  max-width: 1120px;
-  width: 100%;
-  align-items: center;
-}
-
-/* Lado izquierdo: mockup de la entrada */
-.ticket-preview__canvas {
-  background: radial-gradient(circle at top left, #40445b 0, #1f2232 40%, #131626 100%);
-  border-radius: 28px;
-  padding: 2.25rem 2.5rem;
-  box-shadow: var(--shadow-soft);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Home de luz metálica lateral */
-.ticket-preview__canvas::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent 40%);
-  mix-blend-mode: screen;
-  opacity: 0.8;
-  pointer-events: none;
-}
-
-/* Z-index para el contenido real */
-.ticket-preview__canvas > * {
-  position: relative;
-  z-index: 1;
-}
-
-.ticket-preview__img{
-    width: 100%;
-    border-radius: 12px;
-}
-
-/* Lado derecho: ficha */
-.ticket-info {
-  color: var(--color-text);
-}
-
-.ticket-info__header {
-  margin-bottom: 1.5rem;
-}
-
-.ticket-info__title {
-  font-size: 1.6rem;
-  line-height: 1.25;
-  margin-bottom: 0.6rem;
-}
-
-.ticket-info__price {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.1rem;
-}
-
-.ticket-info__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 1.6rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-soft));
-  color: #05040a;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none;
-  box-shadow: 0 14px 35px rgba(246, 108, 193, 0.45);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.1s ease;
-}
-
-.ticket-info__cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 22px 50px rgba(246, 108, 193, 0.65);
-  filter: brightness(1.05);
-}
-
-.ticket-info__cta:active {
-  transform: translateY(0);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.7);
-}
-
-.ticket-info__body {
-  max-width: 380px;
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-}
-
-.ticket-info__text{
-    font-family: var(--font-secondary);
-}
-
-.ticket-info__text + .ticket-info__text {
-  margin-top: 0.7rem;
-}
-
-.ticket-info__list {
-  margin: 1rem 0;
-  padding-left: 1.1rem;
-}
-
-.ticket-info__list{
-    font-family: var(--font-secondary);
-}
-
-.ticket-info__list li + li {
-  margin-top: 0.3rem;
-}
-
-.ticket-info__disclaimer {
-  margin-top: 1.1rem;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #f08bbb;
-}
-
-/* Responsivo */
-@media (max-width: 960px) {
   .ticket-product__inner {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .ticket-preview__canvas {
-    padding: 1.7rem 1.5rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .ticket-preview__top {
-    grid-template-columns: 1fr;
-  }
-
-  .ticket-preview__bottom {
-    grid-template-columns: 1fr;
-  }
-
-  .ticket-preview__barcode {
-    flex-direction: row;
-    align-items: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 3rem;
+    max-width: 1120px;
     width: 100%;
-    border-right: none;
-    border-bottom: 1px dashed rgba(0,0,0,0.24);
-    padding-bottom: 0.8rem;
-    margin-bottom: 0.8rem;
+    align-items: center;
   }
 
-  .ticket-preview__barcode-line {
-    width: 120px;
-    margin-right: 0.8rem;
+  /* Lado izquierdo: mockup de la entrada */
+  .ticket-preview__canvas {
+    background: radial-gradient(
+      circle at top left,
+      #40445b 0,
+      #1f2232 40%,
+      #131626 100%
+    );
+    border-radius: 28px;
+    padding: 2.25rem 2.5rem;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
   }
+
+  /* Home de luz metálica lateral */
+  .ticket-preview__canvas::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06),
+      transparent 40%
+    );
+    mix-blend-mode: screen;
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  /* Z-index para el contenido real */
+  .ticket-preview__canvas > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ticket-preview__img {
+      width: 100%;
+  height: auto;
+  max-height: 320px; /* o lo que quieras como tope en móvil */
+  object-fit: cover; /* o 'contain' si no quieres que recorte */
+  border-radius: 12px;
+  }
+
+  /* Lado derecho: ficha */
+  .ticket-info {
+    color: var(--color-text);
+  }
+
+  .ticket-info__header {
+    margin-bottom: 1.5rem;
+  }
+
+  .ticket-info__title {
+    font-size: 1.6rem;
+    line-height: 1.25;
+    margin-bottom: 0.6rem;
+  }
+
+  .ticket-info__price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.1rem;
+  }
+
+  .ticket-info__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    background: linear-gradient(
+      135deg,
+      var(--color-accent),
+      var(--color-accent-soft)
+    );
+    color: #05040a;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 14px 35px rgba(246, 108, 193, 0.45);
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease,
+      filter 0.1s ease;
+  }
+
+  .ticket-info__cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 22px 50px rgba(246, 108, 193, 0.65);
+    filter: brightness(1.05);
+  }
+
+  .ticket-info__cta:active {
+    transform: translateY(0);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
+  }
+
+  .ticket-info__body {
+    max-width: 380px;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  .ticket-info__text {
+    font-family: var(--font-secondary);
+  }
+
+  .ticket-info__text + .ticket-info__text {
+    margin-top: 0.7rem;
+  }
+
+  .ticket-info__list {
+    margin: 1rem 0;
+    padding-left: 1.1rem;
+  }
+
+  .ticket-info__list {
+    font-family: var(--font-secondary);
+  }
+
+  .ticket-info__list li + li {
+    margin-top: 0.3rem;
+  }
+
+  .ticket-info__disclaimer {
+    margin-top: 1.1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #f08bbb;
+  }
+
+  /* Swiper Slider */
+  .featured-carousel {
+  width: 100%;
+  height: auto;
 }
+
+.featured-carousel .swiper-wrapper {
+  height: auto;
+}
+
+.featured-carousel .swiper-slide {
+  width: 100% !important;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+  .featured-next {
+    background: transparent;
+    border: none;
+  }
+
+  .featured-prev {
+    background: transparent;
+    border: none;
+  }
+
+  .featured-pagination__container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .featured-pagination {
+    flex: 1;
+    max-width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .featured-carousel :global(.swiper-pagination-bullet) {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: transparent;
+    color: var(--light);
+    font-size: 1.5rem;
+    line-height: 1;
+    margin: 0 0.3rem;
+  }
+
+  .featured-carousel :global(.swiper-pagination-bullet::before) {
+    content: "+";
+  }
+
+  .featured-carousel :global(.swiper-pagination-bullet-active) {
+    font-weight: 600;
+    color: var(--accent-warm);
+  }
+
+  /* Responsivo */
+  @media (max-width: 960px) {
+    .ticket-product__inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .ticket-preview__canvas {
+      padding: 1.7rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ticket-preview__top {
+      grid-template-columns: 1fr;
+    }
+
+    .ticket-preview__bottom {
+      grid-template-columns: 1fr;
+    }
+
+    .ticket-preview__barcode {
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.24);
+      padding-bottom: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .ticket-preview__barcode-line {
+      width: 120px;
+      margin-right: 0.8rem;
+    }
+  }
 </style>

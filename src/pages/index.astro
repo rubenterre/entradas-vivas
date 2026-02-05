@@ -9,6 +9,7 @@ import Steps from "../components/sections/Steps.astro";
 import Banner from "../components/sections/Banner.astro";
 import Catalog from "../components/sections/Catalog.astro";
 import Title from "../components/ui/Title.astro";
+import Button from "../components/ui/Button.astro";
 ---
 
 <Layout>
@@ -22,14 +23,16 @@ import Title from "../components/ui/Title.astro";
           que sentiste.
         </p>
         <div class="hero__buttons">
-          <a href="#" class="hero__button-descubre"
-            >Descubre más
-            <img class="btn__icon" src={arrowBlack.src} alt="Icono de flecha" />
-          </a>
-          <a href="#" class="hero__button-form"
-            >Crea tu propia entrada
-            <img class="btn__icon" src={arrow.src} alt="Icono de flecha" />
-          </a>
+          <Button
+            variant="secondary"
+            href="/catalogo"
+            label="Descubre más"
+          />
+          <Button
+            variant="primary"
+            href="/peticiones"
+            label="Crea tu propia entrada"
+          />
         </div>
       </div>
     </div>

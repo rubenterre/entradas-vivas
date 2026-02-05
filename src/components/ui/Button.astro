@@ -1,0 +1,77 @@
+---
+import arrow from "../../assets/icons/arrow_icon.svg";
+import arrowBlack from "../../assets/icons/arrow_icon-black.svg";
+
+const {
+  variant = "primary", // "primary" | "secondary"
+  href = "#",
+  label,
+} = Astro.props;
+
+const isSecondary = variant === "secondary";
+const iconSrc = isSecondary ? arrowBlack.src : arrow.src;
+
+---
+
+<a href={href} class={`hero-button hero-button--${variant}`}>
+  {label}
+  <img class="btn__icon" src={iconSrc} alt="Icono de flecha" />
+</a>
+
+<style>
+  .hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.7rem;
+    border-radius: 12px;
+    font-family: var(--font-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    height: 44px;
+    transition: all 0.18s ease;
+  }
+
+  .hero-button--secondary {
+    background: var(--light);
+    color: var(--text-in-bg);
+  }
+
+  .hero-button--secondary .btn__icon {
+    filter: brightness(0) saturate(100%) invert(9%) sepia(11%) saturate(1496%)
+      hue-rotate(210deg) brightness(95%) contrast(90%);
+  }
+
+  .hero-button--secondary:hover {
+    background: var(--text-secondary);
+    transform: translateY(-1px);
+  }
+
+  .hero-button--secondary:hover .btn__icon {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(64%) saturate(2090%)
+      hue-rotate(329deg) brightness(102%) contrast(101%);
+  }
+
+  .hero-button--primary {
+    background: var(--blue);
+    color: var(--white);
+  }
+
+  .hero-button--primary .btn__icon {
+    filter: brightness(0) invert(1);
+  }
+
+  .hero-button--primary:hover {
+    background: linear-gradient(90deg, var(--blue), var(--main-color));
+    background-size: 180% 100%;
+    background-position: 0% 50%;
+    transform: translateY(-1px);
+  }
+
+  .hero-button:active {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+  }
+</style>
