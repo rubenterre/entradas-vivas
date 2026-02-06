@@ -8,10 +8,16 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Card from "../ui/Card.astro";
 import Title from "../ui/Title.astro";
+
+import { getTicketsAndFilters } from "../../libs/getTickets.js";
+const { items } = await getTicketsAndFilters();
+
+// Si quieres limitar a los X más recientes:
+const recommendedItems = items.slice(0, 6);
 ---
 
 <section class="featured pt-10">
-  <Title title="Lo que más recuerda la gente" url="/catalogo"/>
+  <Title title="Lo que más recuerda la gente" url="/catalogo" />
 
   <Swiper
     class="featured-carousel"
@@ -37,29 +43,22 @@ import Title from "../ui/Title.astro";
     }}
   >
     <SwiperWrapper>
-      <SwiperSlide>
-        <Card />
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <Card />
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <Card />
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <Card />
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <Card />
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <Card />
-      </SwiperSlide>
+      {recommendedItems.length > 0 &&
+        recommendedItems.map((item) => (
+          <SwiperSlide>
+            <Card
+              class="catalog__card"
+              title={item.content.event_name || item.name}
+              slug={item.full_slug}
+              category={item.content?.category || "other"}
+              url={item.content?.url}
+              description={item.content?.description}
+              image={item.content?.image}
+              images={item.content?.images}
+              price={item.content?.price}
+            />
+          </SwiperSlide>
+        ))}
     </SwiperWrapper>
 
     <div class="featured-controls">
@@ -76,8 +75,8 @@ import Title from "../ui/Title.astro";
   </Swiper>
 </section>
 
+
 <style>
-  
   .featured-carousel :global(.swiper-slide) {
     margin: 0 auto;
     display: flex;

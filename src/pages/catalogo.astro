@@ -3,37 +3,20 @@ import Layout from "../layouts/Layout.astro";
 import TitlePage from "../components/ui/TitlePage.astro";
 import Header from "../components/layout/Header.astro";
 import Catalog from "../components/sections/Catalog.astro";
-import { storyblokInit, apiPlugin } from "@storyblok/astro";
+import { getTicketsAndFilters } from "../libs/getTickets.js";
 
-/* const storyblokApi = storyblokInit({
-  accessToken: import.meta.env.STORYBLOK_TOKEN,
-  use: [apiPlugin],
-});
-
-const { data } = await storyblokApi.get("cdn/stories", {
-  starts_with: "entradas/", // carpeta de tus entradas
-  content_type: "entrada", // tipo de contenido
-});
-
-const items = data.stories.map((story) => ({
-  title: story.name,
-  slug: story.slug,
-  category: story.content.category, // campo de Storyblok
-}));
-
-// lista única de categorías para los botones
-const filters = [...new Set(items.map((i) => i.category))]; */
+const { items } = await getTicketsAndFilters();
 ---
 
 <Layout>
   <div class="container">
     <Header />
-    <TitlePage titular="Explorar catálogo" subtitular="Explora todas las entradas conmemorativas y encuentra la tuya para recordar tus mejores conciertos y festivales."/>
+    <TitlePage
+      titular="Explorar catálogo"
+      subtitular="Explora todas las entradas conmemorativas y encuentra la tuya para recordar tus mejores conciertos y festivales."
+    />
     <section class="catalog">
-      
-      <Catalog/>
-      <!--     <Catalog items={items} filters={filters} />
- -->
+      <Catalog items={items} />
     </section>
   </div>
 </Layout>

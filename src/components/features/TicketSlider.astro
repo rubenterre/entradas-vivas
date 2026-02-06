@@ -8,6 +8,11 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
+import { getTicketsAndFilters } from "../../libs/getTickets.js";
+const { items } = await getTicketsAndFilters();
+
+// Si quieres limitar a los X más recientes:
+const sliderItems = items.slice(0, 12);
 ---
 
 <section class="tickets-slider">
@@ -49,72 +54,32 @@ import "swiper/css/pagination";
       },
     }}
   >
-    <SwiperWrapper>
-      <SwiperSlide>
-        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
-
-        <div class="card__box">
-          <p class="card__p">Emilia Mernes</p>
-          <p class="card__price">€ <span>4,34</span></p>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
- 
-        <div class="card__box">
-          <p class="card__p">Emilia Mernes</p>
-          <p class="card__price">€ <span>4,34</span></p>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
- 
-        <div class="card__box">
-          <p class="card__p">Emilia Mernes</p>
-          <p class="card__price">€ <span>4,34</span></p>
-        </div>
-      </SwiperSlide>
-            <SwiperSlide>
-        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
- 
-        <div class="card__box">
-          <p class="card__p">Emilia Mernes</p>
-          <p class="card__price">€ <span>4,34</span></p>
-        </div>
-      </SwiperSlide>
-            <SwiperSlide>
-        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
-  
-        <div class="card__box">
-          <p class="card__p">Emilia Mernes</p>
-          <p class="card__price">€ <span>4,34</span></p>
-        </div>
-      </SwiperSlide>
-            <SwiperSlide>
-        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
-  
-        <div class="card__box">
-          <p class="card__p">Emilia Mernes</p>
-          <p class="card__price">€ <span>4,34</span></p>
-        </div>
-      </SwiperSlide>
-            <SwiperSlide>
-        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
    
-        <div class="card__box">
-          <p class="card__p">Emilia Mernes</p>
-          <p class="card__price">€ <span>4,34</span></p>
-        </div>
-      </SwiperSlide>
-            <SwiperSlide>
-        <img src="/entradas/emilia_menes.webp" alt="Entrada Emília Mernes" />
+<SwiperWrapper>
+  {sliderItems.length > 0 &&
+    sliderItems.map((item) => {
+      const mainImage = item.content?.image || item.content?.images?.[0];
 
-        <div class="card__box">
-          <p class="card__p">Emilia Mernes</p>
-          <p class="card__price">€ <span>4,34</span></p>
-        </div>
-      </SwiperSlide>
-    </SwiperWrapper>
+      return (
+        <SwiperSlide>
+          {mainImage && (
+            <img
+              src={mainImage.filename}
+              alt={mainImage.alt || item.content.event_name || item.name}
+            />
+          )}
+
+          <div class="card__box">
+            <p class="card__p">{item.content.event_name || item.name}</p>
+            <p class="card__price">
+              € <span>{item.content?.price}</span>
+            </p>
+          </div>
+        </SwiperSlide>
+      );
+    })}
+</SwiperWrapper>
+  
 
     <div class="controls-3d">
       <button class="prev-3d">

@@ -1,34 +1,106 @@
 ---
+interface Asset {
+  id?: number;
+  filename: string;
+  alt?: string;
+  name?: string;
+  title?: string;
+  copyright?: string;
+  fieldtype?: string;
+}
+
+interface RichText {
+  type: string;
+  content?: any[];
+}
+
+interface Props {
+  title: string;
+  slug: string;
+  category: string;
+  url?: string;
+  description?: RichText;
+  image?: Asset;
+  images?: Asset[];
+  price?: number | string;
+  class?: string;
+}
+
+const {
+  title,
+  slug,
+  category,
+  url,
+  description,
+  image,
+  images,
+  price,
+  class: className,
+} = Astro.props as Props;
+
+// Imagen principal: usa image, y si no, la primera de images
+const mainImage = image || images?.[0];
+const detailUrl = url || `/${slug}`;
+
+// Precio formateado simple (puedes mejorarlo luego)
+
+let priceNumber: number | null = null;
+
+if (typeof price === "number") {
+  priceNumber = price;
+} else if (typeof price === "string") {
+  const parsed = Number(price.replace(",", "."));
+  priceNumber = Number.isNaN(parsed) ? null : parsed;
+}
+
+const priceLabel =
+  priceNumber !== null
+    ? `€ ${priceNumber.toFixed(2)}`
+    : "Consultar";
+
 
 ---
 
-<article class="ticket-card">
+
+<article
+  class={`ticket-card ${className || ""}`}
+  data-category={category}
+>
   <div class="ticket-card__image-wrapper">
-    <img
-      src="/entradas/emilia_menes.webp"
-      alt="Entrada conmemorativa de Emilia Mendes"
-    />
-    <button class="ticket-card__fav">
+    {mainImage ? (
+      <img
+        src={mainImage.filename}
+        alt={mainImage.alt || title}
+        loading="lazy"
+      />
+    ) : (
+      <div class="ticket-card__image-placeholder">
+        Sin imagen
+      </div>
+    )}
+
+    <button class="ticket-card__fav" type="button">
       <span>♡</span>
     </button>
   </div>
 
   <div class="ticket-card__body">
-    <h3 class="ticket-card__title">Entrada conmemorativa de Emilia Mendes</h3>
+    <h3 class="ticket-card__title">{title}</h3>
 
     <div class="ticket-card__price-row">
       <span class="ticket-card__price-label">Precio</span>
-      <span class="ticket-card__price">€ 4,38</span>
+      <span class="ticket-card__price">{priceLabel}</span>
     </div>
 
     <hr class="ticket-card__divider" />
 
-    <a href="/productos/edicion-conmemorativa-tini-tours-2023" class="ticket-card__cta">
+    <a href={detailUrl} class="ticket-card__cta">
       <span>Ver más detalles</span>
       <span class="ticket-card__cta-icon">+</span>
     </a>
   </div>
 </article>
+
 
 <style>
   .ticket-card{
@@ -37,6 +109,7 @@
     padding: 20px 20px 24px;
     color: var(--light);
     max-width: 360px;
+    margin: 0px 5px;
   }
   .ticket-card__image-wrapper {
     position: relative;
@@ -49,6 +122,17 @@
     width: 100%;
     height: auto;
   }
+
+ /*  .ticket-card__image-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+} */
 
   .ticket-card__fav {
     position: absolute;

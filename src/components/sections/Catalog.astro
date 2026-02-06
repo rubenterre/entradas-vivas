@@ -2,104 +2,136 @@
 import category from "../../assets/icons/category_icon.svg";
 import Card from "../ui/Card.astro";
 
-/* interface Ticket {
-  title: string;
-  slug: string;
-  category: string; // o tag, tipo, etc.
+type StoryblokTicket = {
+  name: string;
+  full_slug: string;
+  content: {
+    event_name?: string;
+    description?: {
+      type: string;
+      content?: any[];
+    };
+    category?: string;
+    url?: string;
+    image?: {
+      filename: string;
+      alt?: string;
+    };
+    images?: {
+      filename: string;
+      alt?: string;
+    }[];
+    price?: number | string;
+  };
+};
+
+interface Props {
+  items?: StoryblokTicket[];
 }
 
-const { items, filters } = Astro.props as {
-  items: Ticket[];
-  filters: string[];
-}; */
+const { items = [] } = Astro.props as Props;
+
+const filters = Array.from(
+  new Set(
+    items
+      .map((story) => story.content.category)
+      .filter(Boolean)
+  )
+);
 ---
 
 <div class="catalog__filters" id="filters">
-  <button data-filter="all" class="filter-btn filter-btn--active">
-    Todos
-  </button>
-  <button
-    type="button"
-    data-filter="category"
-    class="filter-btn"
-    aria-label="Filtrar por categoría"
-  >
+  <label class="filter-select-label">
     <img
       src={category.src}
       alt="Icono de categoría"
-      class="filter-btn__icon"
+      class="filter-select__icon"
       width="20"
       height="20"
       decoding="async"
     />
-    Categorías
-  </button>
-  <!--     {filters.map((filter) => (
-      <button data-filter={filter} class="filter-btn">
-        {filter}
-      </button>
-    ))} -->
+    <span>Categorías:</span>
+    <select id="category-filter" class="filter-select">
+      <option value="all">Todas</option>
+      {filters.map((filter) => (
+        <option value={filter}>{filter}</option>
+      ))}
+    </select>
+  </label>
 </div>
 
 <div class="catalog__grid" id="catalog-grid">
-  <!--     {items.map((item) => (
-      <article
+  {items.length > 0 &&
+    items.map((item) => (
+      <Card
         class="catalog__card"
-        data-category={item.category}
-      >
-        <h3>{item.title}</h3>
-        <p>{item.category}</p>
-        <a href={`/entradas/${item.slug}`}>Ver entrada</a>
-      </article>
-    ))} -->
-    <Card/>
+        title={item.content.event_name || item.name}
+        slug={item.full_slug}
+        category={item.content?.category || "other"}
+        url={item.content?.url}
+        description={item.content?.description}
+        image={item.content?.image}
+        images={item.content?.images}
+        price={item.content?.price}
+      />
+    ))}
 </div>
 
 <script>
-  /*     const buttons = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.catalog__card');
+  const select = document.querySelector("#category-filter");
+  const cards = document.querySelectorAll(".catalog__card");
 
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter;
+  if (select) {
+    select.addEventListener("change", () => {
+      const filter = select.value;
 
-        buttons.forEach((b) => b.classList.remove('filter-btn--active'));
-        btn.classList.add('filter-btn--active');
-
-        cards.forEach((card) => {
-          const category = card.dataset.category;
-          const show = filter === 'all' || category === filter;
-          card.toggleAttribute('hidden', !show);
-        });
+      cards.forEach((card) => {
+        const category = card.dataset.category;
+        const show = filter === "all" || category === filter;
+        card.toggleAttribute("hidden", !show);
       });
-    }); */
+    });
+  }
 </script>
 
 <style>
-
-.catalog__filters{
+  .catalog__filters {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 0px;
-}
-
-  .filter-btn {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 10px;
-    width: 200px;
-    height: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 12px;
-    background: transparent;
-    color: var(--light);
-    padding: 0px 10px;
+    padding: 1rem 0;
   }
 
-  .catalog__grid{
+  .filter-select-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.5rem 0.75rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: transparent;
+    color: var(--light);
+    font-family: var(--font-secondary);
+  }
+
+  .filter-select__icon {
+    flex-shrink: 0;
+  }
+
+  .filter-select {
+    background: transparent;
+    border: none;
+    color: var(--light);
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .filter-select option {
+    color: #000;
+  }
+
+  .catalog__grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(320px, 1fr));
     margin: 1.5rem 0px;

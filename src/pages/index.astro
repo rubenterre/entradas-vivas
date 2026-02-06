@@ -10,6 +10,9 @@ import Banner from "../components/sections/Banner.astro";
 import Catalog from "../components/sections/Catalog.astro";
 import Title from "../components/ui/Title.astro";
 import Button from "../components/ui/Button.astro";
+import { getTicketsAndFilters } from "../libs/getTickets.js";
+
+const { items } = await getTicketsAndFilters();
 ---
 
 <Layout>
@@ -37,15 +40,15 @@ import Button from "../components/ui/Button.astro";
       </div>
     </div>
 
-    <TicketSlider />
+    <TicketSlider items={items} />
   </section>
 
   <div class="container">
-    <Recommended />
+    <Recommended  items={items} />
     <Steps />
     <Banner />
     <Title title="Revivir experiencias" url="/catalogo" />
-    <Catalog />
+    <Catalog items={items}/>
   </div>
 </Layout>
 
