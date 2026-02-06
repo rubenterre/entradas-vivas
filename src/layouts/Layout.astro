@@ -7,7 +7,7 @@ interface Props {
 
 import Footer from "../components/layout/Footer.astro";
 
-const {slug} = Astro.props
+const { slug } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,12 +18,54 @@ const {slug} = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{slug} - Entradas Vivas - Entradas conmemorativas de eventos</title>
+
+    <!-- Open Graph básico -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+
+    <meta
+      property="og:title"
+      content="Entradas Vivas · Entradas conmemorativas personalizadas de conciertos y festivales"
+    />
+    <meta property="og:site_name" content="Entradas Vivas" />
+    <meta
+      property="og:description"
+      content="Explora un catálogo de entradas conmemorativas diseñadas a medida para recordar tus conciertos, festivales y eventos favoritos, y solicita tu diseño personalizado."
+    />
+    <meta property="og:url" content="https://entradasvivas.netlify.app/" />
+    <meta
+      property="og:image"
+      content="https://entradasvivas.netlify.app/og/entradas-vivas-cover.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="Entradas conmemorativas personalizadas de conciertos y festivales"
+    />
+
+    <!-- Opcional: para destacar catálogo / producto -->
+    <meta property="og:type" content="product" />
+    <meta property="product:availability" content="available" />
+    <meta property="product:condition" content="new" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Entradas Vivas · Entradas conmemorativas personalizadas"
+    />
+    <meta
+      name="twitter:description"
+      content="Encarga entradas conmemorativas diseñadas a medida para recordar la experiencia de tus conciertos y festivales."
+    />
+    <meta
+      name="twitter:image"
+      content="https://entradasvivas.netlify.app/og/entradas-vivas-cover.png"
+    />
   </head>
   <body>
     <slot />
 
-    <Footer/>
-
+    <Footer />
   </body>
 </html>
 
@@ -55,29 +97,28 @@ const {slug} = Astro.props
     src: url(/fonts/AzeretMono-VariableFont_wght.ttf);
   }
 
-:root {
-  /* Colores base del sistema */
-  --main-color:    #ff3040; /* rojo/coral principal: CTAs, énfasis */
-  --accent-warm:   #ff7b6a; /* acento cálido más suave: hovers, badges */
-  --blue:          #7b32ff; /* violeta/neón del logo para detalles puntuales */
+  :root {
+    /* Colores base del sistema */
+    --main-color: #ff3040; /* rojo/coral principal: CTAs, énfasis */
+    --accent-warm: #ff7b6a; /* acento cálido más suave: hovers, badges */
+    --blue: #7b32ff; /* violeta/neón del logo para detalles puntuales */
 
-  /* Fondos oscuros */
-  --color-dark-bg: #100c26; /* fondo general (casi morado muy oscuro) */
-  --bg-elevated:   #1b142f; /* secciones elevadas / layout principal */
-  --card-bg:       #22163b; /* tarjetas de entradas, bloques de contenido */
+    /* Fondos oscuros */
+    --color-dark-bg: #100c26; /* fondo general (casi morado muy oscuro) */
+    --bg-elevated: #1b142f; /* secciones elevadas / layout principal */
+    --card-bg: #22163b; /* tarjetas de entradas, bloques de contenido */
 
-  /* Neutros claros y texto */
-  --white:         #f7f5ff; /* blanco roto para textos y fondos puntuales */
-  --light:         #e3deff; /* bordes suaves, líneas, fondos muy claros */
-  --text-in-bg:    #100c26; /* texto sobre botones claros o chips */
-  --text-secondary:#b7b0d9; /* texto secundario / metadatos */
+    /* Neutros claros y texto */
+    --white: #f7f5ff; /* blanco roto para textos y fondos puntuales */
+    --light: #e3deff; /* bordes suaves, líneas, fondos muy claros */
+    --text-in-bg: #100c26; /* texto sobre botones claros o chips */
+    --text-secondary: #b7b0d9; /* texto secundario / metadatos */
 
-  /* Tipografías (como ya tenías) */
-  --font-primary:   MontserratAlternates-Regular;
-  --font-secondary: AzeretMono;
-  --font-bold:      MontserratAlternates-Bold;
-}
-
+    /* Tipografías (como ya tenías) */
+    --font-primary: MontserratAlternates-Regular;
+    --font-secondary: AzeretMono;
+    --font-bold: MontserratAlternates-Bold;
+  }
 
   body {
     background: var(--color-dark-bg);

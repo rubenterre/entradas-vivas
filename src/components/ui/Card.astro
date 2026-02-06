@@ -54,30 +54,22 @@ if (typeof price === "number") {
 }
 
 const priceLabel =
-  priceNumber !== null
-    ? `€ ${priceNumber.toFixed(2)}`
-    : "Consultar";
-
-
+  priceNumber !== null ? `€ ${priceNumber.toFixed(2)}` : "Consultar";
 ---
 
-
-<article
-  class={`ticket-card ${className || ""}`}
-  data-category={category}
->
+<article class={`ticket-card ${className || ""}`} data-category={category}>
   <div class="ticket-card__image-wrapper">
-    {mainImage ? (
-      <img
-        src={mainImage.filename}
-        alt={mainImage.alt || title}
-        loading="lazy"
-      />
-    ) : (
-      <div class="ticket-card__image-placeholder">
-        Sin imagen
-      </div>
-    )}
+    {
+      mainImage ? (
+        <img
+          src={mainImage.filename}
+          alt={mainImage.alt || title}
+          loading="lazy"
+        />
+      ) : (
+        <div class="ticket-card__image-placeholder">Sin imagen</div>
+      )
+    }
 
     <button class="ticket-card__fav" type="button">
       <span>♡</span>
@@ -94,22 +86,24 @@ const priceLabel =
 
     <hr class="ticket-card__divider" />
 
-    <a href={detailUrl} class="ticket-card__cta">
+    <a href={detailUrl} class="ticket-card__cta" target="_blank">
       <span>Ver más detalles</span>
       <span class="ticket-card__cta-icon">+</span>
     </a>
   </div>
 </article>
 
-
 <style>
-  .ticket-card{
+  .ticket-card {
     background: var(--card-bg);
     border-radius: 32px;
     padding: 20px 20px 24px;
     color: var(--light);
     max-width: 360px;
-    margin: 0px 5px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
   .ticket-card__image-wrapper {
     position: relative;
@@ -123,7 +117,7 @@ const priceLabel =
     height: auto;
   }
 
- /*  .ticket-card__image-placeholder {
+  /*  .ticket-card__image-placeholder {
   width: 100%;
   aspect-ratio: 16 / 9;
   display: flex;
@@ -149,20 +143,28 @@ const priceLabel =
     justify-content: center;
     color: var(--light);
     cursor: pointer;
+    display: none;
   }
 
   .ticket-card__body {
     display: flex;
     flex-direction: column;
     gap: 14px;
+    flex: 1;
   }
 
   .ticket-card__title {
     font-family: var(--font-secondary);
     font-size: 1.4rem;
-    line-height: 1.35;
+    line-height: 1.3;
     font-weight: 400;
-    padding: 10px 0px;
+    margin: 10px 0px;
+    min-height: 100px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4; /* nº de líneas visibles */
+    overflow: hidden;
+    max-height: calc(1.3em * 3); 
   }
 
   .ticket-card__price-row {
@@ -205,6 +207,7 @@ const priceLabel =
     gap: 10px;
     cursor: pointer;
     text-decoration: none;
+    margin-top: auto;
   }
 
   .ticket-card__cta-icon {

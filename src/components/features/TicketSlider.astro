@@ -61,6 +61,7 @@ const sliderItems = items.slice(0, 12);
       const mainImage = item.content?.image || item.content?.images?.[0];
 
       return (
+        
         <SwiperSlide>
           {mainImage && (
             <img
@@ -70,12 +71,15 @@ const sliderItems = items.slice(0, 12);
           )}
 
           <div class="card__box">
-            <p class="card__p">{item.content.event_name || item.name}</p>
+           
+            <a href={item.content?.url} target="_blank" class="card__a">{item.content.event_name || item.name}</a>
             <p class="card__price">
               € <span>{item.content?.price}</span>
             </p>
+            
           </div>
         </SwiperSlide>
+    
       );
     })}
 </SwiperWrapper>
@@ -138,10 +142,14 @@ const sliderItems = items.slice(0, 12);
     padding: 1rem 0px;
   }
 
-  .card__p{
+  .card__a{
     font-family: var(--font-secondary);
     color: var(--light);
     font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: 0px 1rem;
   }
 
   .card__price{
