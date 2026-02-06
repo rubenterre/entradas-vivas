@@ -402,14 +402,22 @@ import Steps from "../components/sections/Steps.astro";
     margin: 2rem 0px;
   }
 
-  .why__container {
+/*   .why__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-  }
 
-  .why__card {
+  } */
+
+  .why__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* en vez de center */
+  gap: 1rem;
+}
+
+/*   .why__card {
     background: var(--card-bg);
     border-radius: 32px;
     padding: 20px 20px 24px;
@@ -419,11 +427,24 @@ import Steps from "../components/sections/Steps.astro";
     align-items: center;
     gap: 1rem;
     max-height: 360px;
-  }
+    
+  } */
+
+  .why__card {
+  background: var(--card-bg);
+  border-radius: 32px;
+  padding: 20px 20px 24px;
+  color: var(--light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+ 
+}
 
   .why__h2 {
     font-family: var(--font-primary);
-    font-size: 2rem;
+    font-size: clamp(1rem, 2vw, 18px);
     font-weight: 600;
     color: var(--light);
     text-align: center;
