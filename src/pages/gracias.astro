@@ -1,0 +1,203 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/layout/Header.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<Layout slug="¡Gracias por tu encargo!">
+  <main class="main">
+    <div class="container">
+      <Header />
+
+      <section class="thanks">
+        <div class="thanks__layout">
+          <div class="thanks__text">
+            <p class="thanks__badge">Solicitud enviada</p>
+
+            <h1 class="thanks__title">
+              ¡Gracias por confiar en tus recuerdos!
+            </h1>
+
+            <p class="thanks__lead">
+              Hemos recibido tu solicitud para crear una entrada conmemorativa a
+              medida. En breve revisaremos los detalles y te escribiremos al
+              correo que nos has dejado para definir el diseño, los acabados y
+              el presupuesto final.
+            </p>
+
+            <p class="thanks__note">
+              Si no ves nuestro mensaje en las próximas horas, revisa la carpeta
+              de spam o escríbenos de nuevo desde el formulario de contacto.
+            </p>
+
+            <div class="thanks__actions">
+              <Button
+                variant="secondary"
+                href="/catalogo"
+                label="Volver al catálogo"
+              />
+              <Button
+                variant="primary"
+                href="/contacto"
+                label="Hacer otra consulta"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .main {
+    background:
+      linear-gradient(
+        180deg,
+        rgb(34 22 59 / 97%) 0%,
+        rgb(34 22 59 / 76%) 40%,
+        rgba(34, 22, 59, 1) 100%
+      ),
+      url(../assets/aplausos_fondo_hero.webp);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  /* Contenedor general */
+  .thanks {
+    min-height: 70vh;
+    padding: 4rem 1.5rem;
+    /* background: var(--color-bg-main); */
+    color: var(--color-text-main);
+    display: flex;
+    align-items: center;
+  }
+
+  .thanks__layout {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .thanks__layout {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  /* Columna de texto */
+  .thanks__text {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .thanks__badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 1.5rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border-soft);
+    background: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 0.68rem;
+    color: var(--color-text-soft);
+    font-weight: 600;
+  }
+
+  .thanks__badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--color-success);
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.8);
+  }
+
+  .thanks__title {
+    margin-top: 1.5rem;
+    font-size: clamp(2.1rem, 3vw + 1rem, 3.1rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    text-align: center;
+  }
+
+  .thanks__lead {
+    margin-top: 1rem;
+    font-size: 0.96rem;
+    line-height: 1.6;
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+
+  .thanks__note {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--color-text-soft);
+    text-align: center;
+  }
+
+  /* Botones */
+  .thanks__actions {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .thanks__actions {
+      flex-direction: row;
+    }
+  }
+  /* 
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.8rem;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition:
+      background 0.18s ease,
+      color 0.18s ease,
+      border-color 0.18s ease,
+      transform 0.12s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .btn--primary {
+    background: var(--color-primary);
+    color: #020617;
+    box-shadow: var(--shadow-primary);
+  }
+
+  .btn--primary:hover {
+    background: #fb923c;
+    transform: translateY(-1px);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-text-main);
+    border-color: var(--color-border-soft);
+  }
+
+  .btn--ghost:hover {
+    border-color: #4b5563;
+    background: rgba(17, 24, 39, 0.75);
+  }
+ */
+</style>
